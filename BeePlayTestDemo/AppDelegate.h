@@ -12,6 +12,9 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+- (void)startServer;
+- (void)configLocalHttpServer:(NSInteger)arg1;
+- (void)initSever:(NSInteger)arg1;
 
 @end
 

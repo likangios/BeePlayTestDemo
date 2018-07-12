@@ -1,0 +1,34 @@
+//
+//  BeePlayTestDemo.pch
+//  BeePlayTestDemo
+//
+//  Created by luck on 2018/7/11.
+//  Copyright © 2018年 luck. All rights reserved.
+//
+
+#ifndef BeePlayTestDemo_pch
+#define BeePlayTestDemo_pch
+
+//pod 'UMCCommon'
+//pod 'UMCSecurityPlugins'
+//pod 'UMCAnalytics'
+//pod 'WechatOpenSDK'
+
+#import <AFNetworking/AFNetworkActivityIndicatorManager.h>
+
+
+#import <AFNetworking.h>
+#import <Masonry.h>
+#import <BlocksKit.h>
+#import <BlocksKit+UIKit.h>
+#import <UMCommon/UMCommon.h>
+#import <UMCSecurityPlugins/SecurityEnvSDK/SecurityEnvSDK.h>
+#import <UTDID/UTDevice.h>
+#import <UMCAnalytics/UMAnalytics/DplusMobClick.h>
+#import <WechatOpenSDK/WXApi.h>
+#import <WechatOpenSDK/WXApiObject.h>
+#import <WechatOpenSDK/WechatAuthSDK.h>
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* BeePlayTestDemo_pch */

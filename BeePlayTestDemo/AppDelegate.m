@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
-@interface AppDelegate ()
+#import <UserNotifications/UserNotifications.h>
+@interface AppDelegate ()<UNUserNotificationCenterDelegate>
 
 @end
 
@@ -17,9 +17,51 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [UMConfigure initWithAppkey:@"5affe86c8f4a9d1bf80001ae" channel:@"企业"];
+    [WXApi registerApp:@"wx5f45fbed1936646e"];
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+    
     return YES;
 }
+- (void)requestAuthor{
+    
+        if (@available(iOS 10.0, *)) {
+            UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+            center.delegate = self;
+            [center requestAuthorizationWithOptions:UNAuthorizationOptionSound|UNAuthorizationOptionAlert completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                
+            }];
+            [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+                
+            }];
+            
+        } else {
+            [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert categories:nil];
+        }
+        
+}
 
+- (void)initSever:(NSInteger)port{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"web" ofType:nil];
+    NSFileManager *fileManager =  [[NSFileManager alloc] init];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSString *webPath = [paths.lastObject stringByAppendingString:@"/web"];
+    if (![fileManager isExecutableFileAtPath:webPath]) {
+        [self copyMissingFile:path toPath:webPath];
+    }
+    [self playBackground];
+    [self configLocalHttpServer:port];
+}
+- (void)playBackground{
+    
+}
+- (void)configLocalHttpServer:(NSInteger)port{
+    
+}
+- (void)copyMissingFile:(NSString *)file toPath:(NSString *)path{
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
