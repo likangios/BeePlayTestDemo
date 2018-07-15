@@ -7,7 +7,7 @@
 //
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
-#define RequestSuc 0 //成功
+#define RequestSuc 200 //成功
 
 @interface DTDSNetworkManager : AFHTTPSessionManager
 

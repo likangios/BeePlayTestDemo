@@ -23,6 +23,15 @@
     
     return YES;
 }
+- (XYSocketServer *)socketServer{
+    if (!_socketServer) {
+        NSString *port =  [NSUserDefaults standardUserDefaults].port;
+        if (port) {
+            _socketServer = [[XYSocketServer alloc]initWithPort:port.intValue];
+        }
+    }
+    return _socketServer;
+}
 - (void)requestAuthor{
     
         if (@available(iOS 10.0, *)) {

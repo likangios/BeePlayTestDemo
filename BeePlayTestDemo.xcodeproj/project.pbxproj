@@ -17,6 +17,16 @@
 		840E243B20F6098700AF1377 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840E243920F6098700AF1377 /* LaunchScreen.storyboard */; };
 		840E243E20F6098700AF1377 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E243D20F6098700AF1377 /* main.m */; };
 		840E244720F63E8000AF1377 /* HTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E244620F63E8000AF1377 /* HTTPServer.m */; };
+		840E246E20F9622A00AF1377 /* NSUserDefaults+extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E246D20F9622A00AF1377 /* NSUserDefaults+extension.m */; };
+		840E247120F9D06300AF1377 /* TaskStatusBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E247020F9D06300AF1377 /* TaskStatusBean.m */; };
+		840E247420F9D0BF00AF1377 /* TaskBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E247320F9D0BF00AF1377 /* TaskBean.m */; };
+		840E247720F9D50100AF1377 /* NSString+base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E247620F9D50100AF1377 /* NSString+base64.m */; };
+		840E247A20F9DDAD00AF1377 /* XYSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E247920F9DDAD00AF1377 /* XYSocketServer.m */; };
+		840E247D20FA1DE000AF1377 /* MSKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E247C20FA1DE000AF1377 /* MSKeyChain.m */; };
+		840E248020FA2E3000AF1377 /* CertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E247F20FA2E3000AF1377 /* CertViewController.m */; };
+		840E248320FAF01B00AF1377 /* XYWebViewJSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E248220FAF01B00AF1377 /* XYWebViewJSObject.m */; };
+		840E248620FAF2AA00AF1377 /* LSAW_model.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E248520FAF2AA00AF1377 /* LSAW_model.m */; };
+		840E24BA20FB4E5B00AF1377 /* LSAP_model.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E24B920FB4E5B00AF1377 /* LSAP_model.m */; };
 		CE112884BDD8EB1755835625 /* libPods-BeePlayTestDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 357CC9CA7D10717D52D3F8B6 /* libPods-BeePlayTestDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +50,26 @@
 		840E244420F6191500AF1377 /* BeePlayTestDemo.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeePlayTestDemo.pch; sourceTree = "<group>"; };
 		840E244520F63E8000AF1377 /* HTTPServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPServer.h; sourceTree = "<group>"; };
 		840E244620F63E8000AF1377 /* HTTPServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPServer.m; sourceTree = "<group>"; };
+		840E246C20F9622A00AF1377 /* NSUserDefaults+extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+extension.h"; sourceTree = "<group>"; };
+		840E246D20F9622A00AF1377 /* NSUserDefaults+extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+extension.m"; sourceTree = "<group>"; };
+		840E246F20F9D06300AF1377 /* TaskStatusBean.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskStatusBean.h; sourceTree = "<group>"; };
+		840E247020F9D06300AF1377 /* TaskStatusBean.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskStatusBean.m; sourceTree = "<group>"; };
+		840E247220F9D0BF00AF1377 /* TaskBean.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskBean.h; sourceTree = "<group>"; };
+		840E247320F9D0BF00AF1377 /* TaskBean.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskBean.m; sourceTree = "<group>"; };
+		840E247520F9D50100AF1377 /* NSString+base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+base64.h"; sourceTree = "<group>"; };
+		840E247620F9D50100AF1377 /* NSString+base64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+base64.m"; sourceTree = "<group>"; };
+		840E247820F9DDAD00AF1377 /* XYSocketServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYSocketServer.h; sourceTree = "<group>"; };
+		840E247920F9DDAD00AF1377 /* XYSocketServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYSocketServer.m; sourceTree = "<group>"; };
+		840E247B20FA1DDF00AF1377 /* MSKeyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSKeyChain.h; sourceTree = "<group>"; };
+		840E247C20FA1DE000AF1377 /* MSKeyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSKeyChain.m; sourceTree = "<group>"; };
+		840E247E20FA2E3000AF1377 /* CertViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CertViewController.h; sourceTree = "<group>"; };
+		840E247F20FA2E3000AF1377 /* CertViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CertViewController.m; sourceTree = "<group>"; };
+		840E248120FAF01B00AF1377 /* XYWebViewJSObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYWebViewJSObject.h; sourceTree = "<group>"; };
+		840E248220FAF01B00AF1377 /* XYWebViewJSObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYWebViewJSObject.m; sourceTree = "<group>"; };
+		840E248420FAF2AA00AF1377 /* LSAW_model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSAW_model.h; sourceTree = "<group>"; };
+		840E248520FAF2AA00AF1377 /* LSAW_model.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSAW_model.m; sourceTree = "<group>"; };
+		840E24B820FB4E5B00AF1377 /* LSAP_model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSAP_model.h; sourceTree = "<group>"; };
+		840E24B920FB4E5B00AF1377 /* LSAP_model.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSAP_model.m; sourceTree = "<group>"; };
 		D635ADB8FDB106CB7C880AB0 /* Pods-BeePlayTestDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeePlayTestDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeePlayTestDemo/Pods-BeePlayTestDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +133,26 @@
 				798C9F4620F839B900B7A679 /* DTDSNetworkManager.m */,
 				840E243120F6098700AF1377 /* ViewController.h */,
 				840E243220F6098700AF1377 /* ViewController.m */,
+				840E247E20FA2E3000AF1377 /* CertViewController.h */,
+				840E247F20FA2E3000AF1377 /* CertViewController.m */,
+				840E248420FAF2AA00AF1377 /* LSAW_model.h */,
+				840E248520FAF2AA00AF1377 /* LSAW_model.m */,
+				840E24B820FB4E5B00AF1377 /* LSAP_model.h */,
+				840E24B920FB4E5B00AF1377 /* LSAP_model.m */,
+				840E248120FAF01B00AF1377 /* XYWebViewJSObject.h */,
+				840E248220FAF01B00AF1377 /* XYWebViewJSObject.m */,
+				840E247B20FA1DDF00AF1377 /* MSKeyChain.h */,
+				840E247C20FA1DE000AF1377 /* MSKeyChain.m */,
+				840E247820F9DDAD00AF1377 /* XYSocketServer.h */,
+				840E247920F9DDAD00AF1377 /* XYSocketServer.m */,
+				840E246F20F9D06300AF1377 /* TaskStatusBean.h */,
+				840E247020F9D06300AF1377 /* TaskStatusBean.m */,
+				840E247220F9D0BF00AF1377 /* TaskBean.h */,
+				840E247320F9D0BF00AF1377 /* TaskBean.m */,
+				840E246C20F9622A00AF1377 /* NSUserDefaults+extension.h */,
+				840E246D20F9622A00AF1377 /* NSUserDefaults+extension.m */,
+				840E247520F9D50100AF1377 /* NSString+base64.h */,
+				840E247620F9D50100AF1377 /* NSString+base64.m */,
 				840E244520F63E8000AF1377 /* HTTPServer.h */,
 				840E244620F63E8000AF1377 /* HTTPServer.m */,
 				840E244420F6191500AF1377 /* BeePlayTestDemo.pch */,
@@ -240,10 +290,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840E248320FAF01B00AF1377 /* XYWebViewJSObject.m in Sources */,
+				840E247D20FA1DE000AF1377 /* MSKeyChain.m in Sources */,
 				840E243320F6098700AF1377 /* ViewController.m in Sources */,
+				840E246E20F9622A00AF1377 /* NSUserDefaults+extension.m in Sources */,
+				840E248620FAF2AA00AF1377 /* LSAW_model.m in Sources */,
 				840E243E20F6098700AF1377 /* main.m in Sources */,
+				840E248020FA2E3000AF1377 /* CertViewController.m in Sources */,
 				840E244720F63E8000AF1377 /* HTTPServer.m in Sources */,
+				840E24BA20FB4E5B00AF1377 /* LSAP_model.m in Sources */,
 				840E243020F6098700AF1377 /* AppDelegate.m in Sources */,
+				840E247120F9D06300AF1377 /* TaskStatusBean.m in Sources */,
+				840E247420F9D0BF00AF1377 /* TaskBean.m in Sources */,
+				840E247720F9D50100AF1377 /* NSString+base64.m in Sources */,
+				840E247A20F9DDAD00AF1377 /* XYSocketServer.m in Sources */,
 				798C9F4820F839B900B7A679 /* DTDSNetworkManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

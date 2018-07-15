@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "XYSocketServer.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property(nonatomic,strong)  XYSocketServer *socketServer;
+
 @property (strong, nonatomic) UIWindow *window;
+
+@property(nonatomic,assign) BOOL isActive;
 
 - (void)startServer;
 - (void)configLocalHttpServer:(NSInteger)arg1;

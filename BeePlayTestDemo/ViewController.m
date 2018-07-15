@@ -17,6 +17,11 @@
 #include <CommonCrypto/CommonHMAC.h>
 #import <AdSupport/AdSupport.h>
 #import <WebKit/WebKit.h>
+#import "AppDelegate.h"
+#import "CertViewController.h"
+#import "LSAW_model.h"
+#import "LSAP_model.h"
+
 @interface ViewController ()
 
 
@@ -33,96 +38,6 @@
     }
     return _wkView;
 }
-- (NSMutableDictionary *)defaultHeadDictionary{
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"app_version"] = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
-    dic[@"app_key"] = @"5456ebbec93be";
-    dic[@"ios_version"] = @"11.1";
-    
-    dic[@"bundle_id"] = [[NSBundle mainBundle] bundleIdentifier];
-    dic[@"ios_model"] = [self deviceModel];
-    dic[@"carrier_code"] = [self carrier_code];
-    dic[@"bssid"] = [self bssid];
-
-    dic[@"screen_width"] = [NSString stringWithFormat:@"%f",[UIScreen mainScreen].bounds.size.width];
-    dic[@"screen_height"] = [NSString stringWithFormat:@"%f",[UIScreen mainScreen].bounds.size.height];
-    dic[@"device_serial"] = [self idfa];
-    dic[@"now_idfa"] = [self nowIdfa];
-    dic[@"auth_nonce"] = [NSString stringWithFormat:@"%d",arc4random()%100000 + 100000];
-    dic[@"auth_timestamp"] = [NSString stringWithFormat:@"%.f",[[NSDate date] timeIntervalSince1970]];
-
-    
-    return dic;
-}
-
-- (NSString *)deviceModel{
-    struct utsname systemInfo;
-    uname(&systemInfo);
-    NSString *platform = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
-    return platform;
-}
-- (NSString *)carrier_code{
-    if ([self hasCellularCoverage]) {
-        CTTelephonyNetworkInfo *telep = [CTTelephonyNetworkInfo new];
-        NSString * CountryCode =  telep.subscriberCellularProvider.mobileCountryCode;
-        NSString * NetworkCode =  telep.subscriberCellularProvider.mobileNetworkCode;
-        return [NSString stringWithFormat:@"%@%@",CountryCode,NetworkCode];
-    }
-    return nil;
-}
-//    return @"FABBE34C-C0EE-4B79-A18C-84301162BB90"
-
-- (NSString *)idfa{
-    return @"FABBE34C-C0EE-4B79-A18C-84301162BB9B";
-    return [[ASIdentifierManager sharedManager] advertisingIdentifier].UUIDString;
-}
-- (NSString *)nowIdfa{
-    return @"FABBE34C-C0EE-4B79-A18C-84301162BB9B";
-    return [[ASIdentifierManager sharedManager] advertisingIdentifier].UUIDString;
-}
-- (NSString *)bssid{
-    return @"78:8a:20:ff:b7:e5";
-}
-- (NSString *)authSignatureWithDictionary:(NSDictionary *)dic{
-    NSString *parString = [self paramStringWithSortDictionary:dic];
-    NSString *key = @"19207077765456ebbec9";
-
-    const char *cKey  = [key cStringUsingEncoding:NSASCIIStringEncoding];
-    const char *cData = [parString cStringUsingEncoding:NSASCIIStringEncoding];
-    //Sha256:
-    // unsigned char cHMAC[CC_SHA256_DIGEST_LENGTH];
-    //CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
-    
-    //sha1
-    unsigned char cHMAC[CC_SHA1_DIGEST_LENGTH];
-    CCHmac(kCCHmacAlgSHA1, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
-    
-    NSData *HMAC = [[NSData alloc] initWithBytes:cHMAC
-                                          length:sizeof(cHMAC)];
-    NSMutableString *result = [NSMutableString string];
-    for(int i =0; i < 20; i++) {
-        [result appendFormat:@"%02x", cHMAC[i]];
-    }
-    
-    return [result lowercaseString];
-
-}
-- (NSString  *)paramStringWithSortDictionary:(NSDictionary *)dic{
-    
-    NSArray *allkeys = dic.allKeys;
-    NSArray *sortArray =  [allkeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-        return obj1 < obj2;
-    }];
-    NSMutableString *muStr = [[NSMutableString alloc]init];
-    [sortArray enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [muStr appendString:[NSString stringWithFormat:@"%@=%@",obj,dic[obj]]];
-    }];
-    return muStr;
-}
--(BOOL)hasCellularCoverage{
-    CTTelephonyNetworkInfo *telep = [CTTelephonyNetworkInfo new];
-    return  [telep.subscriberCellularProvider isoCountryCode] != nil;
-}
 - (void)viewDidLoad {
 //    http://www.xiaoyuzhuanqian.com/api/auth/config
     [super viewDidLoad];
@@ -130,46 +45,93 @@
     [self.wkView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
-//    NSData *data =  [NSKeyedArchiver archivedDataWithRootObject:@{@"key1":@"value1",@"key2":@"value2"}];
-//    [[NSUserDefaults standardUserDefaults] setValue:data forKey:@"funcation"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//
-//    NSDictionary *dic = [[NSUserDefaults standardUserDefaults] objectForKey:@"funcation"];
-//
-//    NSString *string = [dic objectForKeyedSubscript:@"key1"];
-//
-//    NSData *base64Da = [[NSData alloc]initWithBase64EncodedString:string options:0];
-//    NSLog(@"%@",[[NSString alloc]initWithData:base64Da encoding:NSUTF8StringEncoding]);
-    
     DTDSNetworkManager  * manager = [DTDSNetworkManager shareInstance];
     NSString * urlString = @"/api/auth/config";
-    NSMutableDictionary *tParams = [self defaultHeadDictionary];
-    
-    /*
-     [HttpRequest authSignatureWithDictionary:@{@"key":@"value"}]
-     @"26c1d610b83e796e4ef95cd0d77464feaab53a97"
-     */
-    
-    NSDictionary *authDic = [NSDictionary dictionaryWithObjectsAndKeys:[self authSignatureWithDictionary:tParams],@"auth_signature", nil];
-    [tParams addEntriesFromDictionary:authDic];
-    NSLog(@"auth_signature====%@",[self authSignatureWithDictionary:@{@"key":@"value"}]);
-    
-    NSDictionary *dic = @{@"ios_version":@"9.3.2",@"carrier_code":@"46000",@"bundle_id":@"com.xiaoyu.qian",@"now_idfa":@"FABBE34C-C0EE-4B79-A18C-84301162BB90",@"app_version":@"9.2.0",@"auth_timestamp":@"1531471308",@"screen_height":@"736.000000",@"bssid":@"78:8a:20:ff:b7:e6",@"auth_nonce":@"137352",@"device_serial":@"FABBE34C-C0EE-4B79-A18C-84301162BB90",@"screen_width":@"414.000000",@"ios_model":@"iPhone7,1",@"app_key":@"5456ebbec93be",@"auth_signature":@"476e9a9dc7f46a2a7edbad7bbd5c281f8486d423"};
-    
-    [manager requestPOST:urlString parameters:dic success:^(id responseObject) {
+    NSMutableDictionary *tParams = [NSMutableDictionary dictionary];
+    [manager requestPOST:urlString parameters:tParams success:^(id responseObject) {
         NSData *jsonData = [responseObject dataUsingEncoding:NSUTF8StringEncoding];
         NSError *err;
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
+        [self saveDataWith:dic[@"return_data"]];
         
-        NSString *function = dic[@"return_data"][@"function"];
         [self.wkView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:dic[@"return_data"][@"cert2_url"]]]];
         NSLog(@"dic is %@",dic);
     } failure:^(NSError *error) {
         
     }];
+
+}
+- (void)saveDataWith:(NSDictionary *)dic{
+    [NSUserDefaults standardUserDefaults].apply_tmout = dic[@"apply_tmout"];
+    [NSUserDefaults standardUserDefaults].shareStatus = dic[@"share_status"];
+    [NSUserDefaults standardUserDefaults].guidePics = dic[@"guide_pics"];
+    [NSUserDefaults standardUserDefaults].mainURL = dic[@"cert2_url"];
+    [NSUserDefaults standardUserDefaults].certURL = dic[@"cert_url"];
+    [NSUserDefaults standardUserDefaults].shareStatus = dic[@"share_status"];
+    [NSUserDefaults standardUserDefaults].apply_tmout = [NSString stringWithFormat:@"%@",dic[@"apply_tmout"]];
+    [NSUserDefaults standardUserDefaults].updateURL = dic[@"update_url"];
+    NSString *function = dic[@"function"];
+    if (function) {
+       NSString *replaceFunc =  [function replaceString];
+        NSString *decodeFunc = [replaceFunc base64Decode];
+        NSData *data =  [decodeFunc dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+        [NSUserDefaults standardUserDefaults].function = dic;
+    }
+    [NSUserDefaults standardUserDefaults].adHideStatus = dic[@"ad_hide"];
+    if ([NSUserDefaults standardUserDefaults].updateURL.length) {
+        [self checkUpdate];
+    }
+    else{
+        NSString *uid = [MSKeyChain load:@"udid"];
+        if (uid.length) {
+            [self handleJumpToWhichXYDestination];
+        }
+        else{
+            [MSKeyChain delete:@"udid"];
+            [self handleUDID];
+        }
+    }
     
+    LSAW_model *model =  [[LSAW_model alloc]init];
+    NSArray *item = model.allItems;
     
-    // Do any additional setup after loading the view, typically from a nib.
+    [item enumerateObjectsUsingBlock:^(LSAP_model *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSLog(@"identifier=%@,isAppStoreInstalled=%u,isHasInstalled=%ld,isNotFirstInstalled=%ld,isNowInstalling=%ld,isNowInstalled=%ld\n",obj.identifier,obj.isAppStoreInstalled,obj.isHasInstalled,obj.isNotFirstInstalled,obj.isNowInstalling,obj.isNowInstalled);
+    }];
+// 注册 tencentoauth  weibo
+}
+
+- (BOOL)isValidIdfa{
+    return YES;
+}
+- (void)handleJumpToWhichXYDestination{
+    if ([self isValidIdfa]) {
+        AppDelegate *appdele =  (AppDelegate *)[UIApplication sharedApplication].delegate;
+        appdele.isActive = YES;
+        [appdele.socketServer start];
+        [self doLogin];
+    }
+    else{
+        [self toSettingGuideViewController];
+    }
+}
+- (void)handleUDID{
+    CertViewController *cert = [[CertViewController alloc]init];
+    [cert setBackAction:^{
+        [self handleJumpToWhichXYDestination];
+    }];
+    [self presentViewController:cert animated:YES completion:NULL];
+}
+- (void)doLogin{
+    
+}
+- (void)toSettingGuideViewController{
+    
+}
+
+- (void)checkUpdate{
+    
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     NSObject *_workspace = [NSClassFromString(@"LSApplicationWorkspace") new];
