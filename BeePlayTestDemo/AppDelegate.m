@@ -73,7 +73,64 @@
 }
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
     
+    NSMutableDictionary *v60 = [[NSMutableDictionary alloc]init];
+    NSArray *array = [url.query componentsSeparatedByString:@"$"];
+    [array enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSArray *keyValue = [obj componentsSeparatedByString:@"=="];
+        [v60 setObject:keyValue[1] forKey:keyValue[0]];
+    }];
+    if ([v60[@"action"] isEqualToString:@"cert"]) {
+        NSString *udid = v60[@"udid"];
+        udid = [udid URLDecode];
+        udid = [[udid replaceString] base64Decode];
+        [MSKeyChain save:@"udid" data:udid];
+    }
+    else{
+        if (!self.isActive) {
+            return NO;
+        }
+        self.hideADs = YES;
+        //分享
+        if ([v60[@"action"] isEqualToString:@"share"]) {
+            
+        }
+        //体现
+        else if ([v60[@"action"] isEqualToString:@"exchange"]){
+           
+            
+        }
+        else if ([v60[@"action"] isEqualToString:@"service"]){
+            [self openService];
+            return YES;
+        }
+        else if ([v60[@"action"] isEqualToString:@"jumpsafari"]){
+            self.jumpStatus = @"1";
+            return YES;
+        }
+        else if ([v60[@"action"] isEqualToString:@"systemshare"]){
+            return YES;
+        }
+        else{
+            return YES;
+        }
+    }
+    
     return YES;
+}
+- (void)openSafari{
+    [[[LSAW_model alloc]init] openAppWithIdentifier:@"com.apple.mobilesafari"];
+}
+- (void)openService{
+    
+}
+- (UIViewController *)currentViewController{
+    UIViewController *v6;
+    if ([UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController) {
+        while (v6.presentedViewController) {
+            v6 = v6.presentedViewController;
+        }
+    }
+    return v6;
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

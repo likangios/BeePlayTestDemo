@@ -21,30 +21,16 @@
 #import "CertViewController.h"
 #import "LSAW_model.h"
 #import "LSAP_model.h"
+#import "XYViewController.h"
 
 @interface ViewController ()
-
-
-@property(nonatomic,strong) NSString *url;
-@property(nonatomic,strong) WKWebView *wkView;
-
 
 @end
 
 @implementation ViewController
-- (WKWebView *)wkView{
-    if (!_wkView) {
-        _wkView = [[WKWebView alloc]init];
-    }
-    return _wkView;
-}
+
 - (void)viewDidLoad {
-//    http://www.xiaoyuzhuanqian.com/api/auth/config
     [super viewDidLoad];
-    [self.view addSubview:self.wkView];
-    [self.wkView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
-    }];
     DTDSNetworkManager  * manager = [DTDSNetworkManager shareInstance];
     NSString * urlString = @"/api/auth/config";
     NSMutableDictionary *tParams = [NSMutableDictionary dictionary];
@@ -54,13 +40,12 @@
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
         [self saveDataWith:dic[@"return_data"]];
         
-        [self.wkView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:dic[@"return_data"][@"cert2_url"]]]];
         NSLog(@"dic is %@",dic);
     } failure:^(NSError *error) {
         
     }];
-
 }
+
 - (void)saveDataWith:(NSDictionary *)dic{
     [NSUserDefaults standardUserDefaults].apply_tmout = dic[@"apply_tmout"];
     [NSUserDefaults standardUserDefaults].shareStatus = dic[@"share_status"];
@@ -124,7 +109,25 @@
     [self presentViewController:cert animated:YES completion:NULL];
 }
 - (void)doLogin{
-    
+    NSString *url = @"/api/auth/login";
+    [[DTDSNetworkManager shareInstance] requestPOST:url parameters:@{} success:^(id responseObject) {
+        NSData *jsonData = [responseObject dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *err;
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
+        if (dic[@"return_data"][@"uid"]) {
+            [NSUserDefaults standardUserDefaults].uid = dic[@"return_data"][@"uid"];
+            [NSUserDefaults standardUserDefaults].directURL = dic[@"return_data"][@"direct_url"];
+            [NSUserDefaults standardUserDefaults].v4_token_tag = dic[@"return_data"][@"v4_token_tag"];
+            // load ad
+        }
+        [self toXYViewController];
+    } failure:^(NSError *error) {
+    }];
+}
+- (void)toXYViewController{
+    XYViewController *xy = [[XYViewController alloc]init];
+    [UIApplication sharedApplication].delegate.window.rootViewController = xy;
+    [[UIApplication sharedApplication].delegate.window makeKeyWindow];
 }
 - (void)toSettingGuideViewController{
     
@@ -133,10 +136,10 @@
 - (void)checkUpdate{
     
 }
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    NSObject *_workspace = [NSClassFromString(@"LSApplicationWorkspace") new];
-    [_workspace performSelector:NSSelectorFromString(@"openApplicationWithBundleID:@") withObject:@"com.perfay.doutushenqi" afterDelay:0];
-}
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//    NSObject *_workspace = [NSClassFromString(@"LSApplicationWorkspace") new];
+//    [_workspace performSelector:NSSelectorFromString(@"openApplicationWithBundleID:@") withObject:@"com.perfay.doutushenqi" afterDelay:0];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -12,4 +12,5 @@
 - (NSString *)base64Decode;
 - (NSString *)base64Encode;
 - (NSString *)replaceString;
+- (NSString *)URLDecode;
 @end

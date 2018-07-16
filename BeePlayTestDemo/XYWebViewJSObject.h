@@ -25,20 +25,15 @@
 @property(nonatomic) __weak UIWebView *webView; // @synthesize webView=_webView;
 @property(nonatomic) __weak JSContext *jsContext; // @synthesize jsContext=_jsContext;
 @property(nonatomic) __weak UIViewController *viewController; // @synthesize viewController=_viewController;
-- (id)xyopensafari:(id)arg1;
-- (id)xycheckjumptosafari:(id)arg1;
-- (id)xycompletecert:(id)arg1;
-- (id)xycheckudid:(id)arg1;
-- (id)xyloadingpage:(id)arg1;
-- (id)xyservice:(id)arg1;
-- (_Bool)isAppStoreInstalledWithIdentifier:(id)arg1;
-- (_Bool)isHasInstalledWithIdentifier:(id)arg1;
-- (_Bool)isNotFirstInstalledWithIdentifier:(id)arg1;
-- (_Bool)isNowInstallingWithIdentifier:(id)arg1;
-- (_Bool)isNowInstalledWithIdentifier:(id)arg1;
+
+- (BOOL)isAppStoreInstalledWithIdentifier:(id)arg1;
+- (BOOL)isHasInstalledWithIdentifier:(id)arg1;
+- (BOOL)isNotFirstInstalledWithIdentifier:(id)arg1;
+- (BOOL)isNowInstallingWithIdentifier:(id)arg1;
+- (BOOL)isNowInstalledWithIdentifier:(id)arg1;
 - (void)appsDataAppend:(id)arg1;
 - (void)appsDataUpdate;
 - (void)openAppWithIdentifier:(id)arg1;
-- (id)allInstalledItems;
-- (id)allItems;
+- (NSArray *)allInstalledItems;
+- (NSArray *)allItems;
 @end

@@ -8,7 +8,10 @@
 
 #import "CertViewController.h"
 #import <WebViewJavascriptBridge.h>
+
 @interface CertViewController ()<UIWebViewDelegate>
+
+@property(nonatomic,strong) WKWebView *web;
 
 @property(nonatomic,strong) WebViewJavascriptBridge *bridge;
 
@@ -48,17 +51,35 @@
 - (void)didCreateJSContext:(NSNotification *)notifObj{
     NSInteger hash =   self.webView.hash;
     NSString *indentifier = [NSString stringWithFormat:@"indentifier%lud",hash];
+
     [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"var %@ = '%@'",indentifier,indentifier]];
-   id obj =  [notifObj.object objectForKey:indentifier];
-    if ([[obj toString] isEqualToString:indentifier]) {
+//    if ([notifObj.object isKindOfClass:[NSDictionary class]]) {
+//   id obj =  [notifObj.object objectForKey:indentifier];
+//    if ([[obj toString] isEqualToString:indentifier]) {
         self.jsContext = notifObj.object;
-    }
+        XYWebViewJSObject *webObj = [[XYWebViewJSObject alloc]init];
+        self.jsContext[@"xynative"] = webObj;
+        webObj.jsContext = self.jsContext;
+        webObj.webView = self.webView;
+        webObj.viewController = self;
+        [self.jsContext setExceptionHandler:^(JSContext *context, JSValue *exception) {
+            
+        }];
+}
+- (void)back{
+    __weak typeof(self)weakSelf = self;
+
+    [self dismissViewControllerAnimated:YES completion:^{
+        if (weakSelf.backAction) {
+            weakSelf.backAction();
+            
+        }
+    }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 /*
 #pragma mark - Navigation
 

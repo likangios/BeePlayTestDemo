@@ -10,6 +10,9 @@
 		798C9F4320F8343700B7A679 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798C9F4220F8343600B7A679 /* CoreTelephony.framework */; };
 		798C9F4520F8370600B7A679 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798C9F4420F8370600B7A679 /* AdSupport.framework */; };
 		798C9F4820F839B900B7A679 /* DTDSNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C9F4620F839B900B7A679 /* DTDSNetworkManager.m */; };
+		798C9F4B20FC4B7600B7A679 /* NSObject+xyzj.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C9F4A20FC4B7600B7A679 /* NSObject+xyzj.m */; };
+		798C9F4E20FC7EF400B7A679 /* XYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C9F4D20FC7EF400B7A679 /* XYViewController.m */; };
+		798C9F5220FCA26F00B7A679 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C9F5120FCA26E00B7A679 /* GCDAsyncSocket.m */; };
 		840E243020F6098700AF1377 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E242F20F6098700AF1377 /* AppDelegate.m */; };
 		840E243320F6098700AF1377 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E243220F6098700AF1377 /* ViewController.m */; };
 		840E243620F6098700AF1377 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840E243420F6098700AF1377 /* Main.storyboard */; };
@@ -37,6 +40,12 @@
 		798C9F4420F8370600B7A679 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		798C9F4620F839B900B7A679 /* DTDSNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTDSNetworkManager.m; sourceTree = "<group>"; };
 		798C9F4720F839B900B7A679 /* DTDSNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTDSNetworkManager.h; sourceTree = "<group>"; };
+		798C9F4920FC4B7600B7A679 /* NSObject+xyzj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+xyzj.h"; sourceTree = "<group>"; };
+		798C9F4A20FC4B7600B7A679 /* NSObject+xyzj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+xyzj.m"; sourceTree = "<group>"; };
+		798C9F4C20FC7EF400B7A679 /* XYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYViewController.h; sourceTree = "<group>"; };
+		798C9F4D20FC7EF400B7A679 /* XYViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYViewController.m; sourceTree = "<group>"; };
+		798C9F5020FCA26E00B7A679 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		798C9F5120FCA26E00B7A679 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		840E242B20F6098700AF1377 /* BeePlayTestDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeePlayTestDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		840E242E20F6098700AF1377 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		840E242F20F6098700AF1377 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -106,6 +115,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		798C9F4F20FCA25B00B7A679 /* GCDAsyncSocket */ = {
+			isa = PBXGroup;
+			children = (
+				798C9F5020FCA26E00B7A679 /* GCDAsyncSocket.h */,
+				798C9F5120FCA26E00B7A679 /* GCDAsyncSocket.m */,
+			);
+			path = GCDAsyncSocket;
+			sourceTree = "<group>";
+		};
 		840E242220F6098700AF1377 = {
 			isa = PBXGroup;
 			children = (
@@ -127,12 +145,17 @@
 		840E242D20F6098700AF1377 /* BeePlayTestDemo */ = {
 			isa = PBXGroup;
 			children = (
+				798C9F4F20FCA25B00B7A679 /* GCDAsyncSocket */,
 				840E242E20F6098700AF1377 /* AppDelegate.h */,
 				840E242F20F6098700AF1377 /* AppDelegate.m */,
 				798C9F4720F839B900B7A679 /* DTDSNetworkManager.h */,
 				798C9F4620F839B900B7A679 /* DTDSNetworkManager.m */,
 				840E243120F6098700AF1377 /* ViewController.h */,
 				840E243220F6098700AF1377 /* ViewController.m */,
+				798C9F4C20FC7EF400B7A679 /* XYViewController.h */,
+				798C9F4D20FC7EF400B7A679 /* XYViewController.m */,
+				798C9F4920FC4B7600B7A679 /* NSObject+xyzj.h */,
+				798C9F4A20FC4B7600B7A679 /* NSObject+xyzj.m */,
 				840E247E20FA2E3000AF1377 /* CertViewController.h */,
 				840E247F20FA2E3000AF1377 /* CertViewController.m */,
 				840E248420FAF2AA00AF1377 /* LSAW_model.h */,
@@ -292,8 +315,11 @@
 			files = (
 				840E248320FAF01B00AF1377 /* XYWebViewJSObject.m in Sources */,
 				840E247D20FA1DE000AF1377 /* MSKeyChain.m in Sources */,
+				798C9F4B20FC4B7600B7A679 /* NSObject+xyzj.m in Sources */,
 				840E243320F6098700AF1377 /* ViewController.m in Sources */,
 				840E246E20F9622A00AF1377 /* NSUserDefaults+extension.m in Sources */,
+				798C9F4E20FC7EF400B7A679 /* XYViewController.m in Sources */,
+				798C9F5220FCA26F00B7A679 /* GCDAsyncSocket.m in Sources */,
 				840E248620FAF2AA00AF1377 /* LSAW_model.m in Sources */,
 				840E243E20F6098700AF1377 /* main.m in Sources */,
 				840E248020FA2E3000AF1377 /* CertViewController.m in Sources */,

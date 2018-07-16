@@ -12,6 +12,7 @@
 @interface DTDSNetworkManager : AFHTTPSessionManager
 
 + (id)shareInstance;
++ (id)noBaseUrlShareInstance;
 +(NSString *)requestGetURL:(NSString *)url params:(NSDictionary *)params;
 - (void)requestPOST:(NSString *)URLString
          parameters:(id)parameters

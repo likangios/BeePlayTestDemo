@@ -34,7 +34,11 @@
 //+ (NSString *)networkingStatesFromStatebar{
 //
 //}
-//- (NSString *)URLDecode{
-//
-//}
+- (NSString *)URLDecode{
+    NSString *decodedString  = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
+(__bridge CFStringRef)self,
+CFSTR(""),
+CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
+    return decodedString;
+}
 @end

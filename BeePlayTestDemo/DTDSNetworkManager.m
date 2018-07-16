@@ -16,6 +16,7 @@
 
 static const NSTimeInterval outTime = 30;
 static DTDSNetworkManager *networkManager;
+static DTDSNetworkManager *networkManager2;
 
 @implementation DTDSNetworkManager
 
@@ -26,6 +27,14 @@ static DTDSNetworkManager *networkManager;
     });
     networkManager.requestSerializer.timeoutInterval = outTime;
     return networkManager;
+}
++ (id)noBaseUrlShareInstance{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        networkManager2 = [[DTDSNetworkManager alloc]init];
+    });
+    networkManager2.requestSerializer.timeoutInterval = outTime;
+    return networkManager2;
 }
 +(NSString *)requestGetURL:(NSString *)url params:(NSDictionary *)params
 {
@@ -92,7 +101,7 @@ static DTDSNetworkManager *networkManager;
 }
 
 - (NSString *)deviceModel{
-    return @"iPhone7,1";
+//    return @"iPhone7,1";
     struct utsname systemInfo;
     uname(&systemInfo);
     NSString *platform = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
