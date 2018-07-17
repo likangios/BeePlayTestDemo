@@ -25,7 +25,7 @@ static DTDSNetworkManager *networkManager2;
     dispatch_once(&onceToken, ^{
         networkManager = [[DTDSNetworkManager alloc]initWithBaseURL:[[self alloc] getBaseUrl]];
     });
-    networkManager.requestSerializer.timeoutInterval = outTime;
+    networkManager.requestSerializer.timeoutInterval = [NSUserDefaults standardUserDefaults].apply_tmout.doubleValue;
     return networkManager;
 }
 + (id)noBaseUrlShareInstance{

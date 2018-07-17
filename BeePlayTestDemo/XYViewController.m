@@ -8,7 +8,7 @@
 
 #import "XYViewController.h"
 
-@interface XYViewController ()
+@interface XYViewController ()<UIWebViewDelegate>
 
 @property(nonatomic,strong) NSString *url;
 @property(nonatomic,strong) UIWebView *webView;
@@ -20,6 +20,7 @@
 - (UIWebView *)webView{
     if (!_webView) {
         _webView = [[UIWebView alloc]init];
+        _webView.delegate = self;
     }
     return _webView;
 }
@@ -51,6 +52,23 @@
         
     }];
 }
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    NSLog(@"shouldStartLoadWithRequest");
+    return YES;
+}
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    NSLog(@"webViewDidStartLoad");
+
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    NSLog(@"webViewDidFinishLoad");
+
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    NSLog(@"didFailLoadWithError");
+
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

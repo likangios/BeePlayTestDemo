@@ -741,7 +741,6 @@ enum GCDAsyncSocketConfig
 {
 	if((self = [super init]))
 	{
-		buffer = [d retain];
 		bytesDone = 0;
 		timeout = t;
 		tag = i;

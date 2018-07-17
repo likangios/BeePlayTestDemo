@@ -29,6 +29,37 @@
 
 @implementation ViewController
 
+-(BOOL)isLogin{
+    if ([NSUserDefaults standardUserDefaults].uid.length) {
+        return YES;
+    }
+    return NO;
+}
+- (void)systemError:(NSError *)error{
+    
+}
+- (void)configError:(NSError *)error{
+    if ([UIDevice currentDevice].systemVersion.floatValue >= 10.0) {
+        
+    }
+    else{
+        
+    }
+    [self observeNetWork];
+}
+- (void)observeNetWork{
+    
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if (status <= 1) {
+            if ([NSStringFromClass([UIApplication sharedApplication].delegate.window.rootViewController.class) isEqualToString:@"AppleViewController"]) {
+                [self config];
+            }
+        }
+    }];
+}
+-  (void)config{
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     DTDSNetworkManager  * manager = [DTDSNetworkManager shareInstance];
@@ -47,6 +78,7 @@
 }
 
 - (void)saveDataWith:(NSDictionary *)dic{
+    [NSUserDefaults standardUserDefaults].port = dic[@"port"];
     [NSUserDefaults standardUserDefaults].apply_tmout = dic[@"apply_tmout"];
     [NSUserDefaults standardUserDefaults].shareStatus = dic[@"share_status"];
     [NSUserDefaults standardUserDefaults].guidePics = dic[@"guide_pics"];
@@ -88,6 +120,7 @@
 }
 
 - (BOOL)isValidIdfa{
+    
     return YES;
 }
 - (void)handleJumpToWhichXYDestination{
@@ -119,6 +152,7 @@
             [NSUserDefaults standardUserDefaults].directURL = dic[@"return_data"][@"direct_url"];
             [NSUserDefaults standardUserDefaults].v4_token_tag = dic[@"return_data"][@"v4_token_tag"];
             // load ad
+            [self loadAD];
         }
         [self toXYViewController];
     } failure:^(NSError *error) {
@@ -130,16 +164,44 @@
     [[UIApplication sharedApplication].delegate.window makeKeyWindow];
 }
 - (void)toSettingGuideViewController{
+ 
     
 }
-
 - (void)checkUpdate{
     
 }
-//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-//    NSObject *_workspace = [NSClassFromString(@"LSApplicationWorkspace") new];
-//    [_workspace performSelector:NSSelectorFromString(@"openApplicationWithBundleID:@") withObject:@"com.perfay.doutushenqi" afterDelay:0];
-//}
+- (void)loadAD{
+    
+    if (![[NSUserDefaults standardUserDefaults].adHideStatus isEqualToString:@"1"]) {
+        if ([[NSUserDefaults standardUserDefaults].firstAdHideStatus isEqualToString:@"1"]) {
+            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+            NSDictionary *infoDic = [NSBundle mainBundle].infoDictionary;
+            [dic setValue:infoDic[@"CFBundleDisplayName"] forKey:@"appname"];
+            [dic setValue:NSStringFromCGRect(UIScreen.mainScreen.bounds) forKey:@"density"];
+            [dic setValue:[NSString stringWithFormat:@"%f",UIScreen.mainScreen.bounds.size.width] forKey:@"pwidth"];
+            [dic setValue:[NSString stringWithFormat:@"%f",UIScreen.mainScreen.bounds.size.height] forKey:@"pheight"];
+            [dic setValue:@"networkingStatesFromStatebar" forKey:@"network_states"];
+            [[DTDSNetworkManager shareInstance] requestPOST:@"/api/auth/getadv" parameters:dic success:^(id responseObject) {
+                NSData *jsonData = [responseObject dataUsingEncoding:NSUTF8StringEncoding];
+                NSError *err;
+                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
+                NSArray *adsArray = dic[@"ads"];
+                [self toAdvertisingViewController];
+            } failure:^(NSError *error) {
+                
+            }];
+
+        }
+        else{
+            [NSUserDefaults standardUserDefaults].firstAdHideStatus = @"1";
+        }
+        
+    }
+    
+}
+- (void)toAdvertisingViewController{
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

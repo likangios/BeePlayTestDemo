@@ -11,7 +11,6 @@
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
 
 @end
-
 @implementation AppDelegate
 
 
@@ -20,7 +19,11 @@
     [UMConfigure initWithAppkey:@"5affe86c8f4a9d1bf80001ae" channel:@"企业"];
     [WXApi registerApp:@"wx5f45fbed1936646e"];
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
-    
+    NSString *string = [launchOptions objectForKey:UIApplicationLaunchOptionsSourceApplicationKey];
+    if ([string isEqualToString:@"com.apple.mobilesafari"]) {
+        self.jumpStatus = @"1";
+    }
+    self.bgTask = [[BackgroundTask alloc]init];
     return YES;
 }
 - (XYSocketServer *)socketServer{
@@ -121,7 +124,9 @@
     [[[LSAW_model alloc]init] openAppWithIdentifier:@"com.apple.mobilesafari"];
 }
 - (void)openService{
-    
+    if (![[self currentViewController] isKindOfClass:[NSClassFromString(@"QYSessionViewController") class]]) {
+        NSLog(@"打开小鱼赚钱客服");
+    }
 }
 - (UIViewController *)currentViewController{
     UIViewController *v6;
@@ -132,28 +137,96 @@
     }
     return v6;
 }
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    if (userInfo) {
+        if (userInfo[@"nim"]) {
+            [self openService];
+        }
+    }
+}
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
+
+    if ([[notification alertAction] isEqualToString:@"打开"]) {
+        [self openService];
+    }
+}
+- (void)onBack:(id)arg1{
+    __weak typeof(self)weakSelf = self;
+    [[self currentViewController] dismissViewControllerAnimated:YES completion:^{
+        [weakSelf openSafari];
+    }];
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application {
+    self.jumpStatus = @"0";
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
 }
 
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    if (self.isActive) {
+        [_bgTask stopBackgroundTask];
+        [self.timer invalidate];
+    }
+    if ([self isLogin] ) {
+        [self.socketServer detectTaskWithoutTimer];
+    }
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    [MobClick endLogPageView:NSStringFromClass(self.class)];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:@"99"];
+    
 }
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    [MobClick endLogPageView:NSStringFromClass(self.class)];
+
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
+- (BOOL)isLogin{
+    return [NSUserDefaults standardUserDefaults].uid.length;
+}
+- (void)dataUpdate:(id)arg1{
+    if ([UIDevice currentDevice].systemVersion.floatValue < 11.0 && self.isLogin) {
+        LSAW_model *model =  [[LSAW_model alloc]init];
+        [model appsDataUpdate];
+    }
+    if (self.socketServer) {
+        [self.socketServer start];
+    }
+}
+- (int)isScreenLocked{
+    return 1;
+}
 
-
+- (BOOL)isJailBreak{
+    return NO;
+}
+- (void)registerPushForIOS8{
+    UIMutableUserNotificationAction *action =  [[UIMutableUserNotificationAction alloc]init];
+    action.identifier = @"ACCEPT_IDENTIFIER";
+    action.title = @"Accept";
+    action.activationMode = UIUserNotificationActivationModeForeground;
+    action.destructive = NO;
+    action.authenticationRequired = NO;
+    UIMutableUserNotificationCategory *category = [[UIMutableUserNotificationCategory alloc]init];
+    category.identifier = @"INVITE_CATEGORY";
+    [category setActions:@[action] forContext:0];
+    [category setActions:@[action] forContext:1];
+    NSSet *aset = [NSSet setWithObjects:category, nil];
+   UIUserNotificationSettings *setting = [UIUserNotificationSettings settingsForTypes:7 categories:aset];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:setting];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+}
+- (void)registerPush{
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:7];
+}
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }

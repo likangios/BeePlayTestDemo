@@ -18,6 +18,8 @@
 @dynamic  mainURL;
 @dynamic  certURL;
 @dynamic  directURL;
+@dynamic lastTask;
+@dynamic currentTask;
 //@property(strong, nonatomic) TaskStatusBean *lastTask;
 //@property(strong, nonatomic) TaskBean *currentTask;
 @dynamic  shareStatus;
@@ -280,4 +282,22 @@
     }
     [self synchronize];
 }
+- (TaskBean *)currentTask{
+    id obj = [self objectForKey:@"TaskBean"];
+    if (obj) {
+        TaskBean *value =  [NSKeyedUnarchiver unarchiveObjectWithData:obj];
+        return value;
+    }
+    return nil;
+}
+- (void)setCurrentTask:(TaskBean *)currentTask{
+    if (currentTask) {
+        [self setValue:[NSKeyedArchiver  archivedDataWithRootObject:currentTask] forKey:@"TaskBean"];
+    }
+    else{
+        [self removeObjectForKey:@"TaskBean"];
+    }
+    [self synchronize];
+}
+
 @end

@@ -10,7 +10,7 @@
 #import "XYSocketServer.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-//@property(retain, nonatomic) BackgroundTask *bgTask; // @synthesize bgTask=_bgTask;
+@property(retain, nonatomic) BackgroundTask *bgTask; // @synthesize bgTask=_bgTask;
 @property(retain, nonatomic) NSTimer *timer; // @synthesize timer=_timer;
 
 @property(copy, nonatomic) NSString *jumpStatus; // @synthesize jumpStatus=_jumpStatus;
@@ -31,5 +31,11 @@
 - (void)configLocalHttpServer:(NSInteger)arg1;
 - (void)initSever:(NSInteger)arg1;
 - (void)openSafari;
+- (int)isScreenLocked;
+- (BOOL)isLogin;
+- (BOOL)isJailBreak;
+- (void)registerPushForIOS8;
+- (void)registerPush;
+
 @end
 

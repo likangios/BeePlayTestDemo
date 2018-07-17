@@ -32,7 +32,7 @@
 - (void)alertView:(id)arg1 clickedButtonAtIndex:(long long)arg2;
 - (void)responseBindDeviceStringtoSocket:(id)arg1;
 - (void)responseBindDeviceRecevieToSocket:(id)arg1;
-- (void)cancelTask:(id)arg1 notice:(BOOL)arg2 message:(id)arg3;
+- (void)cancelTask:(NSString *)bundleId notice:(BOOL)notice message:(NSString *)msg;
 - (void)completeTask:(id)arg1 checkFirst:(id)arg2;
 - (void)openTask:(id)arg1 checkFirst:(id)arg2;
 - (void)detectTaskAfteriOS11:(id)arg1;

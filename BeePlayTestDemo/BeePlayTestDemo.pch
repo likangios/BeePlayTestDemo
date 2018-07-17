@@ -16,7 +16,7 @@
 
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 
-
+#import <MBProgressHUD.h>
 #import <AFNetworking.h>
 #import <Masonry.h>
 #import <BlocksKit.h>
@@ -25,6 +25,7 @@
 #import <UMCSecurityPlugins/SecurityEnvSDK/SecurityEnvSDK.h>
 #import <UTDID/UTDevice.h>
 #import <UMCAnalytics/UMAnalytics/DplusMobClick.h>
+#import <UMCAnalytics/UMAnalytics/MobClick.h>
 #import <WechatOpenSDK/WXApi.h>
 #import <WechatOpenSDK/WXApiObject.h>
 #import <WechatOpenSDK/WechatAuthSDK.h>
@@ -36,6 +37,8 @@
 #import "NSUserDefaults+extension.h"
 #import "NSString+base64.h"
 #import "XYWebViewJSObject.h"
+#import "BackgroundTask.h"
+
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
