@@ -76,5 +76,87 @@
 - (NSTimeInterval)socket:(GCDAsyncSocket *)sock shouldTimeoutReadWithTag:(long)tag elapsed:(NSTimeInterval)elapsed bytesDone:(NSUInteger)length{
     return 0.0;
 }
+- (void)image:(id)arg1 didFinishSavingWithError:(NSError *)error contextInfo:(void *)arg3{
+    
+}
+- (void)responseDictionary:(NSDictionary *)dic ToSocket:(GCDAsyncSocket *)sock{
+    NSString *jsonstring =  [self dictionaryToJson:dic];
+    [self response:jsonstring ToSocket:sock];
+}
+- (void)response:(NSString *)reponse ToSocket:(GCDAsyncSocket *)sock{
+    
+    if (self.callback) {
+        reponse = [NSString stringWithFormat:@"%@(%@)",self.callback,reponse];
+    }
+    [self response:reponse WithContentType:@"text/plain" ToSocket:sock];
+}
+- (void)response:(NSString *)reponse WithContentType:(NSString *)type ToSocket:(GCDAsyncSocket *)sock{
+    NSData *fileData = [reponse dataUsingEncoding:NSUnicodeStringEncoding];
+    CFHTTPMessageRef response =
+    CFHTTPMessageCreateResponse(
+                                kCFAllocatorDefault, 200, NULL, kCFHTTPVersion1_1);
+    CFHTTPMessageSetHeaderFieldValue(
+                                     response, (CFStringRef)@"Content-Type", (CFStringRef)@"text/plain");
+    CFHTTPMessageSetHeaderFieldValue(
+                                     response, (CFStringRef)@"Connection", (CFStringRef)@"close");
+    CFHTTPMessageSetHeaderFieldValue(
+                                     response,
+                                     (CFStringRef)@"Content-Length",
+                                     (__bridge CFStringRef)[NSString stringWithFormat:@"%ld", [fileData length]]);
+    NSData *headerData = (__bridge NSData *)CFHTTPMessageCopySerializedMessage(response);
+    
+    [sock writeData:headerData withTimeout:0 tag:-1];
+    [sock writeData:fileData withTimeout:0 tag:-1];
+}
+- (void)commandTaskstart{
+    [self.timer invalidate];
+    TaskBean *bean = [NSUserDefaults standardUserDefaults].currentTask;
+    if (bean) {
+        NSDate *date = [NSDate date];
+        if (date.timeIntervalSince1970 < bean.expiredAt.longLongValue) {
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:25.0 target:self selector:@selector(detectTask:) userInfo:nil repeats:YES];
+        }
+    }
+}
+- (void)detectTask:(NSTimer *)timer{
+    if ([UIDevice currentDevice].systemVersion.floatValue >= 11.0) {
+        [self detectTaskAfteriOS11:timer];
+    }
+    else{
+        [self detectTaskBeforeiOS11:timer];
+    }
+}
+- (void)detectTaskAfteriOS11:(NSTimer *)arg1{
+    
+}
+- (void)detectTaskBeforeiOS11:(NSTimer *)arg1{
+    TaskBean *task =  [NSUserDefaults standardUserDefaults].currentTask;
+    if (!arg1 || task) {
+        
+        if ([NSDate date].timeIntervalSince1970 >= task.expiredAt.longLongValue) {
+            [NSUserDefaults standardUserDefaults].currentTask = nil;
+            return;
+        }
+        LSAP_model *lsap_model =  [[LSAP_model alloc]initWithId:task.bundleId];
+        LSAW_model *lsaw_model= [[LSAW_model alloc]init];
+        if (lsap_model.isNowInstalling || lsap_model.isNowInstalled) {
+            if (![task.isFirst isEqualToString:@"1"]) {
+                [lsaw_model appsDataAppend:task.bundleId];
+                [self cancelTask:task notice:YES message:@"非首次安装，任务取消"];
+                return;
+            }
+            task.isFirst = @"1";
+            [NSUserDefaults standardUserDefaults].currentTask = task;
 
+        }
+        
+    }
+}
+- (void)commandTaskcancel{
+    [self.timer invalidate];
+    [NSUserDefaults standardUserDefaults].currentTask = nil;
+}
+- (void)detectTaskWithoutTimer{
+    [self detectTask:self.timer];
+}
 @end
