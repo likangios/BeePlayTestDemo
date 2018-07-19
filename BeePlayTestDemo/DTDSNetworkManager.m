@@ -25,15 +25,19 @@ static DTDSNetworkManager *networkManager2;
     dispatch_once(&onceToken, ^{
         networkManager = [[DTDSNetworkManager alloc]initWithBaseURL:[[self alloc] getBaseUrl]];
     });
-    networkManager.requestSerializer.timeoutInterval = [NSUserDefaults standardUserDefaults].apply_tmout.doubleValue;
+//    networkManager.requestSerializer.timeoutInterval = [NSUserDefaults standardUserDefaults].apply_tmout.doubleValue;
+    networkManager.requestSerializer.timeoutInterval = outTime;
     return networkManager;
 }
 + (id)noBaseUrlShareInstance{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         networkManager2 = [[DTDSNetworkManager alloc]init];
+//        AFHTTPResponseSerializer * responseSerialize = [AFHTTPResponseSerializer serializer];
+//        responseSerialize.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html",@"*/*", nil];
+//        networkManager2.responseSerializer =responseSerialize;
     });
-    networkManager2.requestSerializer.timeoutInterval = outTime;
+    networkManager2.requestSerializer.timeoutInterval = [NSUserDefaults standardUserDefaults].apply_tmout.doubleValue;
     return networkManager2;
 }
 +(NSString *)requestGetURL:(NSString *)url params:(NSDictionary *)params
@@ -82,9 +86,11 @@ static DTDSNetworkManager *networkManager2;
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_version"] = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
     dic[@"app_key"] = @"5456ebbec93be";
-    dic[@"ios_version"] = @"11.1";
-    
-    dic[@"bundle_id"] = [[NSBundle mainBundle] bundleIdentifier];
+//    dic[@"ios_version"] = @"10.1";
+    dic[@"ios_version"] = [UIDevice currentDevice].systemVersion;
+
+//    dic[@"bundle_id"] = [[NSBundle mainBundle] bundleIdentifier];
+    dic[@"bundle_id"] = @"com.xiaoyu.qian";
     dic[@"ios_model"] = [self deviceModel];
     dic[@"carrier_code"] = [self carrier_code];
     dic[@"bssid"] = [self bssid];
@@ -119,15 +125,19 @@ static DTDSNetworkManager *networkManager2;
 //    return @"FABBE34C-C0EE-4B79-A18C-84301162BB90"
 
 - (NSString *)idfa{
-    return @"FABBE34C-C0EE-4B79-A18C-84301162BB9B";
+//    return @"68753A44-4D6F-1226-9C60-0050E4C00067";
+    return @"FABBE34C-C0EE-4B79-A18C-84301162BB9C";
     return [[ASIdentifierManager sharedManager] advertisingIdentifier].UUIDString;
 }
 - (NSString *)nowIdfa{
-    return @"FABBE34C-C0EE-4B79-A18C-84301162BB9B";
+//    return @"68753A44-4D6F-1226-9C60-0050E4C00067";
+    return @"FABBE34C-C0EE-4B79-A18C-84301162BB9C";
     return [[ASIdentifierManager sharedManager] advertisingIdentifier].UUIDString;
 }
 - (NSString *)bssid{
     return @"78:8a:20:ff:b7:e5";
+//    return @"81:1a:30:ff:b3:a4";
+
 }
 - (NSString *)authSignatureWithDictionary:(NSDictionary *)dic{
     NSString *parString = [self paramStringWithSortDictionary:dic];

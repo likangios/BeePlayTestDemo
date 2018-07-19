@@ -16,10 +16,12 @@ pod 'ReactiveObjC', '~> 2.1.2'
 pod 'MBProgressHUD', '~> 1.1.0'
 pod 'AFNetworking', '~> 3.2.0'
 pod 'WebViewJavascriptBridge', '~> 6.0'
-
+ pod 'MJExtension', '~> 3.0.15.1'
+ 
 pod 'UMCCommon'
 pod 'UMCSecurityPlugins'
 pod 'UMCAnalytics'
 pod 'WechatOpenSDK'
+pod 'CocoaAsyncSocket'
 
 end

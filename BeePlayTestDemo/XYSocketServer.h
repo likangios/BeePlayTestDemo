@@ -25,8 +25,8 @@
 - (void)start;
 - (void)stop;
 - (void)localNotification:(id)arg1 Action:(id)arg2;
-- (id)parseUrl:(id)arg1 ForParams:(id *)arg2;
-- (id)parseForParamsWithData:(id)arg1 ForCommond:(id *)arg2;
+- (id)parseUrl:(NSString *)url ForParams:(NSError * _Nullable __autoreleasing *)error;
+- (NSDictionary *)parseForParamsWithData:(NSData *)data ForCommond:(NSError * _Nullable __autoreleasing *)error;
 - (id)dictionaryToJson:(id)arg1;
 - (void)commandCopyWithValue:(id)arg1;
 - (void)alertView:(id)arg1 clickedButtonAtIndex:(long long)arg2;

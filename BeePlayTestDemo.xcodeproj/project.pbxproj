@@ -12,10 +12,10 @@
 		798C9F4820F839B900B7A679 /* DTDSNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C9F4620F839B900B7A679 /* DTDSNetworkManager.m */; };
 		798C9F4B20FC4B7600B7A679 /* NSObject+xyzj.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C9F4A20FC4B7600B7A679 /* NSObject+xyzj.m */; };
 		798C9F4E20FC7EF400B7A679 /* XYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C9F4D20FC7EF400B7A679 /* XYViewController.m */; };
-		798C9F5220FCA26F00B7A679 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C9F5120FCA26E00B7A679 /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		798C9F7720FDD02E00B7A679 /* BackgroundTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C9F7620FDD02E00B7A679 /* BackgroundTask.m */; };
 		798C9F7A20FDEBC500B7A679 /* LKProxyDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C9F7920FDEBC500B7A679 /* LKProxyDetection.m */; };
 		798C9F7D20FDFED700B7A679 /* Advertising.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C9F7C20FDFED700B7A679 /* Advertising.m */; };
+		798C9F7F20FF256700B7A679 /* udid.xml in Resources */ = {isa = PBXBuildFile; fileRef = 798C9F7E20FF256700B7A679 /* udid.xml */; };
 		840E243020F6098700AF1377 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E242F20F6098700AF1377 /* AppDelegate.m */; };
 		840E243320F6098700AF1377 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E243220F6098700AF1377 /* ViewController.m */; };
 		840E243620F6098700AF1377 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840E243420F6098700AF1377 /* Main.storyboard */; };
@@ -47,14 +47,13 @@
 		798C9F4A20FC4B7600B7A679 /* NSObject+xyzj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+xyzj.m"; sourceTree = "<group>"; };
 		798C9F4C20FC7EF400B7A679 /* XYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYViewController.h; sourceTree = "<group>"; };
 		798C9F4D20FC7EF400B7A679 /* XYViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYViewController.m; sourceTree = "<group>"; };
-		798C9F5020FCA26E00B7A679 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
-		798C9F5120FCA26E00B7A679 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		798C9F7520FDD02E00B7A679 /* BackgroundTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackgroundTask.h; sourceTree = "<group>"; };
 		798C9F7620FDD02E00B7A679 /* BackgroundTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BackgroundTask.m; sourceTree = "<group>"; };
 		798C9F7820FDEBC500B7A679 /* LKProxyDetection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LKProxyDetection.h; sourceTree = "<group>"; };
 		798C9F7920FDEBC500B7A679 /* LKProxyDetection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LKProxyDetection.m; sourceTree = "<group>"; };
 		798C9F7B20FDFED700B7A679 /* Advertising.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Advertising.h; sourceTree = "<group>"; };
 		798C9F7C20FDFED700B7A679 /* Advertising.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Advertising.m; sourceTree = "<group>"; };
+		798C9F7E20FF256700B7A679 /* udid.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = udid.xml; sourceTree = "<group>"; };
 		840E242B20F6098700AF1377 /* BeePlayTestDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeePlayTestDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		840E242E20F6098700AF1377 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		840E242F20F6098700AF1377 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -124,15 +123,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		798C9F4F20FCA25B00B7A679 /* GCDAsyncSocket */ = {
-			isa = PBXGroup;
-			children = (
-				798C9F5020FCA26E00B7A679 /* GCDAsyncSocket.h */,
-				798C9F5120FCA26E00B7A679 /* GCDAsyncSocket.m */,
-			);
-			path = GCDAsyncSocket;
-			sourceTree = "<group>";
-		};
 		840E242220F6098700AF1377 = {
 			isa = PBXGroup;
 			children = (
@@ -154,9 +144,9 @@
 		840E242D20F6098700AF1377 /* BeePlayTestDemo */ = {
 			isa = PBXGroup;
 			children = (
-				798C9F4F20FCA25B00B7A679 /* GCDAsyncSocket */,
 				840E242E20F6098700AF1377 /* AppDelegate.h */,
 				840E242F20F6098700AF1377 /* AppDelegate.m */,
+				798C9F7E20FF256700B7A679 /* udid.xml */,
 				798C9F4720F839B900B7A679 /* DTDSNetworkManager.h */,
 				798C9F4620F839B900B7A679 /* DTDSNetworkManager.m */,
 				798C9F7820FDEBC500B7A679 /* LKProxyDetection.h */,
@@ -271,6 +261,7 @@
 			files = (
 				840E243B20F6098700AF1377 /* LaunchScreen.storyboard in Resources */,
 				840E243820F6098700AF1377 /* Assets.xcassets in Resources */,
+				798C9F7F20FF256700B7A679 /* udid.xml in Resources */,
 				840E243620F6098700AF1377 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,7 +331,6 @@
 				798C9F7720FDD02E00B7A679 /* BackgroundTask.m in Sources */,
 				840E246E20F9622A00AF1377 /* NSUserDefaults+extension.m in Sources */,
 				798C9F4E20FC7EF400B7A679 /* XYViewController.m in Sources */,
-				798C9F5220FCA26F00B7A679 /* GCDAsyncSocket.m in Sources */,
 				840E248620FAF2AA00AF1377 /* LSAW_model.m in Sources */,
 				798C9F7A20FDEBC500B7A679 /* LKProxyDetection.m in Sources */,
 				840E243E20F6098700AF1377 /* main.m in Sources */,
@@ -490,6 +480,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AC3QX9VJ78;
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = BeePlayTestDemo/BeePlayTestDemo.pch;
 				INFOPLIST_FILE = BeePlayTestDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -507,6 +498,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AC3QX9VJ78;
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = BeePlayTestDemo/BeePlayTestDemo.pch;
 				INFOPLIST_FILE = BeePlayTestDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

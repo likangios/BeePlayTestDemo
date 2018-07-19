@@ -62,6 +62,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [MSKeyChain delete:@"udid"];
     DTDSNetworkManager  * manager = [DTDSNetworkManager shareInstance];
     NSString * urlString = @"/api/auth/config";
     NSMutableDictionary *tParams = [NSMutableDictionary dictionary];
@@ -152,7 +153,7 @@
             [NSUserDefaults standardUserDefaults].directURL = dic[@"return_data"][@"direct_url"];
             [NSUserDefaults standardUserDefaults].v4_token_tag = dic[@"return_data"][@"v4_token_tag"];
             // load ad
-            [self loadAD];
+//            [self loadAD];
         }
         [self toXYViewController];
     } failure:^(NSError *error) {

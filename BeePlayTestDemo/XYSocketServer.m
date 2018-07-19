@@ -18,13 +18,15 @@
 }
 - (void)start{
     NSString *url = [NSString stringWithFormat:@"http://127.0.0.1:%d/%@",self.port,@"xyping"];
-    [[DTDSNetworkManager noBaseUrlShareInstance] requestGET:url parameters:nil success:^(id responseObject) {
+    [[DTDSNetworkManager noBaseUrlShareInstance] requestGET:url parameters:@{} success:^(id responseObject) {
         if (self.listenSocket.isDisconnected) {
             NSLog(@"服务启动失败，端口被占用");
         }
     } failure:^(NSError *error) {
-        NSLog(@"服务启动失败，请重启应用");
-        [self onStartWithError:error];
+        if (![self onStartWithError:error]) {
+            NSLog(@"服务启动失败，请重启应用");
+        }
+        
     }];
 }
 - (void)stop{
@@ -42,41 +44,28 @@
         return YES;
     }
     else{
+        NSLog(@"error.domain %@",err.domain);
         return NO;
     }
 }
-- (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket{
-    [self.connectedSockets addObject:sock];
-    NSString * connectedHost = [sock connectedHost];
-    if ([connectedHost isEqualToString:@"127.0.0.1"]) {
-        [sock readDataWithTimeout:0 tag:-1];
+- (void)commandTaskstart{
+    [self.timer invalidate];
+    TaskBean *bean = [NSUserDefaults standardUserDefaults].currentTask;
+    if (bean) {
+        NSDate *date = [NSDate date];
+        if (date.timeIntervalSince1970 < bean.expiredAt.longLongValue) {
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:25.0 target:self selector:@selector(detectTask:) userInfo:nil repeats:YES];
+        }
     }
-}
-- (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag{
-    [sock readDataWithTimeout:0 tag:tag];
-}
-- (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
-    if ([UIDevice currentDevice].systemVersion.floatValue >= 11.0) {
-        [self afteriOS11Socket:sock didReadData:data withTag:tag];
-    }
-    else{
-        [self beforiOS11Socket:sock didReadData:data withTag:tag];
-    }
-}
-- (void)afteriOS11Socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
-    
-}
-- (void)beforiOS11Socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
-    
 }
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err{
     if (self.listenSocket != sock) {
         [self.connectedSockets removeObject:sock];
     }
 }
-- (NSTimeInterval)socket:(GCDAsyncSocket *)sock shouldTimeoutReadWithTag:(long)tag elapsed:(NSTimeInterval)elapsed bytesDone:(NSUInteger)length{
-    return 0.0;
-}
+//- (NSTimeInterval)socket:(GCDAsyncSocket *)sock shouldTimeoutReadWithTag:(long)tag elapsed:(NSTimeInterval)elapsed bytesDone:(NSUInteger)length{
+//    return 10.0;
+//}
 - (void)image:(id)arg1 didFinishSavingWithError:(NSError *)error contextInfo:(void *)arg3{
     
 }
@@ -106,19 +95,11 @@
                                      (__bridge CFStringRef)[NSString stringWithFormat:@"%ld", [fileData length]]);
     NSData *headerData = (__bridge NSData *)CFHTTPMessageCopySerializedMessage(response);
     
-    [sock writeData:headerData withTimeout:0 tag:-1];
-    [sock writeData:fileData withTimeout:0 tag:-1];
+    [sock writeData:headerData withTimeout:-1 tag:0];
+    [sock writeData:fileData withTimeout:-1 tag:0];
+
 }
-- (void)commandTaskstart{
-    [self.timer invalidate];
-    TaskBean *bean = [NSUserDefaults standardUserDefaults].currentTask;
-    if (bean) {
-        NSDate *date = [NSDate date];
-        if (date.timeIntervalSince1970 < bean.expiredAt.longLongValue) {
-            self.timer = [NSTimer scheduledTimerWithTimeInterval:25.0 target:self selector:@selector(detectTask:) userInfo:nil repeats:YES];
-        }
-    }
-}
+
 - (void)detectTask:(NSTimer *)timer{
     if ([UIDevice currentDevice].systemVersion.floatValue >= 11.0) {
         [self detectTaskAfteriOS11:timer];
@@ -349,8 +330,8 @@
                                      (__bridge CFStringRef)[NSString stringWithFormat:@"%ld", [fileData length]]);
     NSData *headerData = (__bridge NSData *)CFHTTPMessageCopySerializedMessage(response);
     
-    [sock writeData:headerData withTimeout:0 tag:-1];
-    [sock writeData:fileData withTimeout:0 tag:-1];
+    [sock writeData:headerData withTimeout:-1 tag:0];
+    [sock writeData:fileData withTimeout:-1 tag:0];
 }
 - (void)responseBindDeviceStringtoSocket:(GCDAsyncSocket *)sock{
     NSString *string = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>     <!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">     <plist version=\"1.0\">     <dict>     <key>PayloadContent</key>     <dict>     <key>URL</key>     <string>http://aso.allfree.cc/event/receive</string>     <key>DeviceAttributes</key>     <array>     <string>UDID</string>     <string>IMEI</string>     <string>ICCID</string>     <string>VERSION</string>     <string>PRODUCT</string>     </array>     </dict>     <key>PayloadOrganization</key>     <string>小鱼赚钱</string>     <key>PayloadDisplayName</key>     <string>设备绑定</string>  <!--安装时显示的标题-->     <key>PayloadVersion</key>     <integer>1</integer>     <key>PayloadUUID</key>     <string>3C4DC7D2-E475-3375-489C-0379887737A756</string>  <!--自己随机填写的唯一字符串-->     <key>PayloadIdentifier</key>     <string>com.xiaoyu.dev</string>     <key>PayloadDescription</key>     <string>本文件仅用来获取设备ID</string>   <!--描述-->     <key>PayloadType</key>     <string>Profile Service</string>     </dict>     </plist>";
@@ -368,8 +349,8 @@
                                      (__bridge CFStringRef)[NSString stringWithFormat:@"%ld", [fileData length]]);
     NSData *headerData = (__bridge NSData *)CFHTTPMessageCopySerializedMessage(response);
     
-    [sock writeData:headerData withTimeout:0 tag:-1];
-    [sock writeData:fileData withTimeout:0 tag:-1];
+    [sock writeData:headerData withTimeout:-1 tag:0];
+    [sock writeData:fileData withTimeout:-1 tag:0];
 }
 - (void)commandCopyWithValue:(NSString *)url{
     UIPasteboard *pastBoart = [UIPasteboard generalPasteboard];
@@ -379,7 +360,7 @@
     NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:1 error:nil];
     return [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
 }
-- (id)parseForParamsWithData:(NSData *)data ForCommond:(NSString *)commond{
+- (NSDictionary *)parseForParamsWithData:(NSData *)data ForCommond:(NSError * _Nullable __autoreleasing *)error{
     NSMutableDictionary *muDic = [NSMutableDictionary dictionary];
     NSString *string = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSArray *array =  [string componentsSeparatedByString:@"\r\n"];
@@ -394,8 +375,11 @@
                     NSString *v31 =  [subsubStr substringToIndex:[subsubStr rangeOfString:@"?"].location];
                     NSString *v18 =  [subsubStr substringToIndex:[subsubStr rangeOfString:@"?"].location +1];
                    NSArray *array =  [v18 componentsSeparatedByString:@"&"];
-                    [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                        
+                    [array enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        NSArray *ar = [obj componentsSeparatedByString:@"="];
+                        if (ar.count == 2) {
+                        [muDic setObject:ar[0] forKey:[ar[1] URLDecode]];
+                        }
                     }];
 
                 }
@@ -403,6 +387,77 @@
             
         }];
     }
+    self.callback = muDic[@"callback"];
+    [muDic removeObjectForKey:@"callback"];
+    [muDic removeObjectForKey:@"-"];
+    return muDic;
+}
+
+#pragma mark - delegate
+- (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket{
+    [self.connectedSockets addObject:newSocket];
+    NSString * connectedHost = [newSocket connectedHost];
+    if ([connectedHost isEqualToString:@"127.0.0.1"]) {
+        [newSocket readDataWithTimeout:-1 tag:0];
+    }
+}
+- (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
+    
+    if ([UIDevice currentDevice].systemVersion.floatValue >= 11.0) {
+        [self afteriOS11Socket:sock didReadData:data withTag:tag];
+    }
+    else{
+        [self beforiOS11Socket:sock didReadData:data withTag:tag];
+    }
+}
+- (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag{
+    [sock readDataWithTimeout:-1 tag:tag];
+}
+- (void)afteriOS11Socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
+    
+}
+- (void)beforiOS11Socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
+    AppDelegate *appdele = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (!appdele.isLogin) {
+        [self responseDictionary:@{@"result":@"4001",@"msg":@"钥匙初始化失败"} ToSocket:sock];
+        return;
+    }
+    
+    NSError *error;
+   id  v11 = [self parseForParamsWithData:data ForCommond:&error];
+    if ([v11 isEqualToString:@"xyping"]) {
+        
+    }
+}
+- (id)parseUrl:(NSString *)url ForParams:(NSError * _Nullable __autoreleasing *)error{
     return nil;
+}
+
+
+/**
+ * Called when a socket has read in data, but has not yet completed the read.
+ * This would occur if using readToData: or readToLength: methods.
+ * It may be used to for things such as updating progress bars.
+ **/
+- (void)socket:(GCDAsyncSocket *)sock didReadPartialDataOfLength:(NSUInteger)partialLength tag:(long)tag{
+    
+}
+
+/**
+ * Called when a socket has written some data, but has not yet completed the entire write.
+ * It may be used to for things such as updating progress bars.
+ **/
+- (void)socket:(GCDAsyncSocket *)sock didWritePartialDataOfLength:(NSUInteger)partialLength tag:(long)tag{
+    
+}
+#pragma mark - notication
+- (void)localNotification:(NSString *)content Action:(NSString *)action{
+    AppDelegate *appdele = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    appdele.jumpStatus = @"2";
+    UILocalNotification *localNoti =  [[UILocalNotification alloc] init];
+    localNoti.alertBody = content;
+    localNoti.alertAction = action;
+    localNoti.soundName = UILocalNotificationDefaultSoundName;
+    [[UIApplication sharedApplication] presentLocalNotificationNow:localNoti];
 }
 @end
