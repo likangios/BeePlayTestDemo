@@ -115,7 +115,10 @@
     NSArray *item = model.allItems;
     
     [item enumerateObjectsUsingBlock:^(LSAP_model *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSLog(@"identifier=%@,isAppStoreInstalled=%u,isHasInstalled=%ld,isNotFirstInstalled=%ld,isNowInstalling=%ld,isNowInstalled=%ld\n",obj.identifier,obj.isAppStoreInstalled,obj.isHasInstalled,obj.isNotFirstInstalled,obj.isNowInstalling,obj.isNowInstalled);
+        
+        if ([obj.identifier isEqualToString:@"com.xiaoyu.qian"]) {
+            NSLog(@"identifier=%@,isAppStoreInstalled=%u,isHasInstalled=%ld,isNotFirstInstalled=%ld,isNowInstalling=%ld,isNowInstalled=%ld\n",obj.identifier,obj.isAppStoreInstalled,obj.isHasInstalled,obj.isNotFirstInstalled,obj.isNowInstalling,obj.isNowInstalled);
+        }
     }];
 // 注册 tencentoauth  weibo
 }

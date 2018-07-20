@@ -13,7 +13,20 @@
 @end
 @implementation AppDelegate
 
-
+- (void)appListTypeExchange{
+    NSData *data =  [MSKeyChain load:@"applist"];
+   NSKeyedUnarchiver*unarch = [[NSKeyedUnarchiver alloc]initForReadingWithData:data];
+    id v5 = [unarch decodeObjectForKey:@"applist"];
+    [unarch finishDecoding];
+    if ([v5 isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *v7 = (NSDictionary *)v5;
+        NSMutableData *muData = [[NSMutableData alloc]init];
+        NSKeyedArchiver *archiver =  [[NSKeyedArchiver alloc]initForWritingWithMutableData:muData];
+        [archiver encodeObject:v7.allKeys forKey:@"applist"];
+        [archiver finishEncoding];
+        [MSKeyChain save:@"applist" data:muData];
+    }
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [UMConfigure initWithAppkey:@"5affe86c8f4a9d1bf80001ae" channel:@"企业"];
@@ -24,6 +37,7 @@
         self.jumpStatus = @"1";
     }
     self.bgTask = [[BackgroundTask alloc]init];
+    [self appListTypeExchange];
     return YES;
 }
 - (XYSocketServer *)socketServer{
@@ -160,6 +174,16 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     self.jumpStatus = @"0";
+    if (self.isActive) {
+        [self.bgTask startBackgroundTask];
+    }
+//    @available(iOS 10.0, *)
+
+    self.timer =[NSTimer bk_timerWithTimeInterval:60 block:^(NSTimer *timer) {
+            [self dataUpdate:nil];
+    } repeats:YES];
+    [self.timer fire];
+    
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
 }
@@ -179,18 +203,21 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     [MobClick endLogPageView:NSStringFromClass(self.class)];
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:@"99"];
     
 }
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [MobClick endLogPageView:NSStringFromClass(self.class)];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:@"0"];
 
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 - (BOOL)isLogin{
-    return [NSUserDefaults standardUserDefaults].uid.length;
+    if ([NSUserDefaults standardUserDefaults].uid.length) {
+        return YES;
+    }
+    return NO;
 }
 - (void)dataUpdate:(id)arg1{
     if ([UIDevice currentDevice].systemVersion.floatValue < 11.0 && self.isLogin) {
@@ -207,6 +234,22 @@
 
 - (BOOL)isJailBreak{
     return NO;
+    NSString *v30 = @"/User/Applications/";
+    NSString *v31 = @"/Applications/Cydia.app";
+    NSString *v32 = @"/Library/MobileSubstrate/MobileSubstrate.dylib";
+    NSString *v33 = @"/bin/bash";
+    NSString *v34 = @"/usr/sbin/sshd";
+    NSString *v35 = @"/etc/apt";
+   __block BOOL v3 = NO;
+    NSArray *array = @[v30,v31,v32,v33,v34,v35];
+    [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        BOOL fileExist =  [[NSFileManager defaultManager] fileExistsAtPath:obj];
+        v3 |= fileExist;
+    }];
+//    stat("/Applications/Cydia.app", 0);
+//    if (v3) {
+//        
+//    }
 }
 - (void)registerPushForIOS8{
     UIMutableUserNotificationAction *action =  [[UIMutableUserNotificationAction alloc]init];

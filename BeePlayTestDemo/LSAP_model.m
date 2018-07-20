@@ -117,4 +117,23 @@
     }
     return v10;
 }
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    if (self) {
+        self.LSAP_model_instance = [aDecoder decodeObjectForKey:@"LSAP_model_instance"];
+        self.dictionary = [aDecoder decodeObjectForKey:@"dictionary"];
+    }
+    return self;
+}
+
+
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+
+{
+    [aCoder encodeObject:self.LSAP_model_instance forKey:@"LSAP_model_instance"];
+    
+    [aCoder encodeObject:self.dictionary forKey:@"dictionary"];
+    
+}
+
 @end

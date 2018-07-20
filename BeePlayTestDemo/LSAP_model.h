@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LSAP_model : NSObject
-{
-    NSObject *_LSAP_model_instance;
-    NSDictionary *_dictionary;
-}
+@interface LSAP_model : NSObject<NSCoding>
+
+@property(nonatomic,strong) NSObject *LSAP_model_instance;
+@property(nonatomic,strong) NSDictionary *dictionary;
+
 - (BOOL)isAppStoreInstalled;
 - (NSString *)description;
 - (BOOL)isHasInstalled;

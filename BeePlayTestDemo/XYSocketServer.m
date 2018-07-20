@@ -360,36 +360,41 @@
     NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:1 error:nil];
     return [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
 }
-- (NSDictionary *)parseForParamsWithData:(NSData *)data ForCommond:(NSError * _Nullable __autoreleasing *)error{
+- (id)parseForParamsWithData:(NSData *)data ForCommond:(NSError * _Nullable __autoreleasing *)error{
     NSMutableDictionary *muDic = [NSMutableDictionary dictionary];
     NSString *string = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSArray *array =  [string componentsSeparatedByString:@"\r\n"];
     if (array.count) {
         [array enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
             if ([obj hasPrefix:@"POST"]) {
                obj =  [obj stringByReplacingOccurrencesOfString:@"POST" withString:@"GET"];
-                NSString *subStr =  [obj substringFromIndex:5];
-                NSRange  range = [subStr rangeOfString:@" HTTP/"];
-               NSString *subsubStr =  [subStr substringToIndex:range.location];
-                if ([subsubStr rangeOfString:@"?"].location != NSNotFound) {
-                    NSString *v31 =  [subsubStr substringToIndex:[subsubStr rangeOfString:@"?"].location];
-                    NSString *v18 =  [subsubStr substringToIndex:[subsubStr rangeOfString:@"?"].location +1];
-                   NSArray *array =  [v18 componentsSeparatedByString:@"&"];
-                    [array enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                        NSArray *ar = [obj componentsSeparatedByString:@"="];
-                        if (ar.count == 2) {
-                        [muDic setObject:ar[0] forKey:[ar[1] URLDecode]];
-                        }
-                    }];
-
-                }
             }
-            
+            NSString *subStr =  [obj substringFromIndex:5];
+            NSRange  range = [subStr rangeOfString:@" HTTP/"];
+            NSString *subsubStr =  [subStr substringToIndex:range.location];
+            if ([subsubStr rangeOfString:@"?"].location != NSNotFound) {
+//                NSString *v31 =  [subsubStr substringToIndex:[subsubStr rangeOfString:@"?"].location];
+                NSString *v18 =  [subsubStr substringFromIndex:[subsubStr rangeOfString:@"?"].location +1];
+                NSArray *array =  [v18 componentsSeparatedByString:@"&"];
+                [array enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    NSArray *ar = [obj componentsSeparatedByString:@"="];
+                    if (ar.count == 2) {
+                        [muDic setObject:ar[0] forKey:[ar[1] URLDecode]];
+                    }
+                }];
+            }
+            else{
+                
+            }
         }];
     }
     self.callback = muDic[@"callback"];
     [muDic removeObjectForKey:@"callback"];
     [muDic removeObjectForKey:@"-"];
+    if (!muDic.count) {
+        return @"xyping";
+    }
     return muDic;
 }
 
@@ -424,9 +429,9 @@
     }
     
     NSError *error;
-   id  v11 = [self parseForParamsWithData:data ForCommond:&error];
+   NSString *v11 = [self parseForParamsWithData:data ForCommond:&error];
     if ([v11 isEqualToString:@"xyping"]) {
-        
+        NSLog(@"dic ===========%@",v11);
     }
 }
 - (id)parseUrl:(NSString *)url ForParams:(NSError * _Nullable __autoreleasing *)error{
