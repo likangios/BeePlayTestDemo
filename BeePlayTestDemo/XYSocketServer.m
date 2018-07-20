@@ -13,6 +13,7 @@
     self =[super init];
     if (self) {
         self.port = port;
+       self.server = [[NSNetService alloc] initWithDomain:@"local." type:@"_http._tcp." name:@"1C33148A-E459-4181-9909-50D2E91CA2F5"];
     }
     return self;
 }

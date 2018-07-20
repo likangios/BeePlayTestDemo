@@ -13,6 +13,8 @@
     NSObject<OS_dispatch_queue> *_socketQueue;
 
 }
+@property(nonatomic,strong)  NSNetService *server;
+
 @property(nonatomic,strong) NSMutableArray *connectedSockets;
 
 @property(nonatomic,assign) int port;
