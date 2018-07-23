@@ -7,12 +7,14 @@
 //
 
 #import "XYViewController.h"
-
+#import <WebViewJavascriptBridge.h>
+#import <AdSupport/AdSupport.h>
 @interface XYViewController ()<UIWebViewDelegate>
 
 @property(nonatomic,strong) NSString *url;
 @property(nonatomic,strong) UIWebView *webView;
 @property(retain, nonatomic) JSContext *jsContext; // @synthesize jsContext=_jsContext;
+@property WebViewJavascriptBridge* bridge;
 
 @end
 
@@ -31,7 +33,22 @@
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSUserDefaults standardUserDefaults].mainURL]]];
+//    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSUserDefaults standardUserDefaults].mainURL]]];
+    self.bridge = [WebViewJavascriptBridge bridgeForWebView:self.webView];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://qianka.com/v4/key?lite=1"]]];
+    [self.bridge registerHandler:@"openSafari" handler:^(NSDictionary  *data, WVJBResponseCallback responseCallback) {
+        NSLog(@"ObjC Echo called with: %@", data);
+        NSString *url =[NSString stringWithFormat:@"%@&token=9aa60098f5b61f4433c2548e9055e231",data[@"backUrl"]];
+        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:url]]) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        }
+        responseCallback(data);
+    }];
+//    A8F572A1-B2B3-410B-92C4-7F532D93105E
+
+    [self.bridge callHandler:@"isUploaded" data:nil responseCallback:^(id responseData) {
+        
+    }];
     
 }
 - (void)didCreateJSContext:(NSNotification *)notifObj{

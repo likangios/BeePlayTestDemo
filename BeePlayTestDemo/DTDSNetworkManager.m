@@ -18,6 +18,10 @@ static const NSTimeInterval outTime = 30;
 static DTDSNetworkManager *networkManager;
 static DTDSNetworkManager *networkManager2;
 
+@interface DTDSNetworkManager ()<NSURLSessionDelegate>
+
+@end
+
 @implementation DTDSNetworkManager
 
 + (id)shareInstance{
@@ -37,9 +41,64 @@ static DTDSNetworkManager *networkManager2;
 //        responseSerialize.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html",@"*/*", nil];
 //        networkManager2.responseSerializer =responseSerialize;
     });
+    NSString *udid = [ASIdentifierManager sharedManager].advertisingIdentifier.UUIDString;
     networkManager2.requestSerializer.timeoutInterval = [NSUserDefaults standardUserDefaults].apply_tmout.doubleValue;
     return networkManager2;
+    
 }
+- (void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(nullable NSError *)error{
+    
+}
+
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
+ completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler{
+    
+}
+- (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession *)session{
+    
+}
+- (NSURLRequest *)zPaSYdyXYGqCfFAq:(NSMutableURLRequest *)request params:(NSDictionary *)params header:(NSDictionary *)dic{
+    NSURLRequest *v362 = request;
+    NSDictionary *v363 = params;
+    NSDictionary *v364 = dic;
+    [request setValue:request.URL.host forHTTPHeaderField:@"Host"];
+    [request setValue:[NSString stringWithFormat:@"%ld",NSDate.date.timeIntervalSince1970] forHTTPHeaderField:@"X-QK-TIME"];
+    [request setValue:@"c26007f41f472932454ea80deabd612c" forHTTPHeaderField:@"X-QK-API-KEY"];
+    NSString *udid = [ASIdentifierManager sharedManager].advertisingIdentifier.UUIDString;
+
+    NSString *bundleIdentifier = @"bao.bao.qin";
+    
+    NSString *v302 = @"16195848-30b2-4fa1-bc49-f47d644fdd2f";//uuid key sskeychain
+    NSString *v303 = udid;
+    NSString *stru_10020E990 = @"";
+    NSString *auth = [NSString stringWithFormat:@"%@|%@|%@",v303,v302,stru_10020E990];
+    [request setValue:auth forHTTPHeaderField:@"X-QK-AUTH"];
+
+    NSString *iphone_model = @"iPhone7,1";
+    CGFloat versionNumber = NSFoundationVersionNumber;
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    
+    NSString *version = [infoDic objectForKey:(NSString *)kCFBundleVersionKey];//获取项目版本号
+    NSString *shortVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];//获取项目版本号
+
+    NSString *versionInfo = [NSString stringWithFormat:@"%@.%@",shortVersion,version];
+    NSString *APPV = [NSString stringWithFormat:@"%@|%@|%@|%f",iphone_model,versionNumber,stru_10020E990,bundleIdentifier,versionInfo];
+    [request setValue:auth forHTTPHeaderField:@"X-QK-APPV"];
+    [request setValue:bundleIdentifier forHTTPHeaderField:@"X-QK-SCHEME"];
+    [request setValue:@"X-Qk-Auth, *" forHTTPHeaderField:@"Access-Control-Allow-Headers"];
+    [request setValue:@"*" forHTTPHeaderField:@"Access-Control-Allow-Origin"];
+    
+    NSString *v104 = [UIDevice currentDevice].systemVersion;
+    NSNumber *v105 = @([[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]);
+    NSString *v149 = @"";//JPUSHService, "registrationID"
+    
+    NSString *extension = [NSString stringWithFormat:@"%@|%@|%@",v104,v105,v149];
+    [request setValue:bundleIdentifier forHTTPHeaderField:@"X-QK-EXTENSION"];
+   
+    NSMutableString *mustri = [NSMutableString string];
+    return  request;
+}
+
 +(NSString *)requestGetURL:(NSString *)url params:(NSDictionary *)params
 {
     NSString * urlParamString = @"";//拼接的get参数
@@ -78,6 +137,7 @@ static DTDSNetworkManager *networkManager2;
         
     self.responseSerializer =responseSerialize;
     self.requestSerializer = [AFHTTPRequestSerializer serializer];
+        
     }
     return self;
 }
