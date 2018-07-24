@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7940B13F2106B6D600441D72 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7940B1322106B6D600441D72 /* RNCryptor.m */; };
+		7940B1402106B6D600441D72 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7940B1382106B6D600441D72 /* RNDecryptor.m */; };
+		7940B1412106B6D600441D72 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7940B1392106B6D600441D72 /* RNEncryptor.m */; };
+		7940B1422106B6D600441D72 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 7940B13A2106B6D600441D72 /* RNCryptorEngine.m */; };
+		7940B1432106B6D600441D72 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7940B13E2106B6D600441D72 /* Info.plist */; };
 		798C9F4320F8343700B7A679 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798C9F4220F8343600B7A679 /* CoreTelephony.framework */; };
 		798C9F4520F8370600B7A679 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798C9F4420F8370600B7A679 /* AdSupport.framework */; };
 		798C9F4820F839B900B7A679 /* DTDSNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C9F4620F839B900B7A679 /* DTDSNetworkManager.m */; };
@@ -39,6 +44,19 @@
 /* Begin PBXFileReference section */
 		357CC9CA7D10717D52D3F8B6 /* libPods-BeePlayTestDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeePlayTestDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3927349A1A7679586A48E6F7 /* Pods-BeePlayTestDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeePlayTestDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeePlayTestDemo/Pods-BeePlayTestDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		7940B1312106B6D600441D72 /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNDecryptor.h; sourceTree = "<group>"; };
+		7940B1322106B6D600441D72 /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
+		7940B1332106B6D600441D72 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
+		7940B1342106B6D600441D72 /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
+		7940B1352106B6D600441D72 /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorEngine.h; sourceTree = "<group>"; };
+		7940B1362106B6D600441D72 /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
+		7940B1372106B6D600441D72 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
+		7940B1382106B6D600441D72 /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
+		7940B1392106B6D600441D72 /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
+		7940B13A2106B6D600441D72 /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
+		7940B13C2106B6D600441D72 /* RNCryptor iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor iOS.h"; sourceTree = "<group>"; };
+		7940B13D2106B6D600441D72 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		7940B13E2106B6D600441D72 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		798C9F4220F8343600B7A679 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		798C9F4420F8370600B7A679 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		798C9F4620F839B900B7A679 /* DTDSNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTDSNetworkManager.m; sourceTree = "<group>"; };
@@ -123,6 +141,33 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7940B1302106B6D600441D72 /* RNCryptor */ = {
+			isa = PBXGroup;
+			children = (
+				7940B1312106B6D600441D72 /* RNDecryptor.h */,
+				7940B1322106B6D600441D72 /* RNCryptor.m */,
+				7940B1332106B6D600441D72 /* RNCryptor+Private.h */,
+				7940B1342106B6D600441D72 /* RNCryptor-Prefix.pch */,
+				7940B1352106B6D600441D72 /* RNCryptorEngine.h */,
+				7940B1362106B6D600441D72 /* RNEncryptor.h */,
+				7940B1372106B6D600441D72 /* RNCryptor.h */,
+				7940B1382106B6D600441D72 /* RNDecryptor.m */,
+				7940B1392106B6D600441D72 /* RNEncryptor.m */,
+				7940B13A2106B6D600441D72 /* RNCryptorEngine.m */,
+			);
+			path = RNCryptor;
+			sourceTree = "<group>";
+		};
+		7940B13B2106B6D600441D72 /* RNCryptor iOS */ = {
+			isa = PBXGroup;
+			children = (
+				7940B13C2106B6D600441D72 /* RNCryptor iOS.h */,
+				7940B13D2106B6D600441D72 /* module.modulemap */,
+				7940B13E2106B6D600441D72 /* Info.plist */,
+			);
+			path = "RNCryptor iOS";
+			sourceTree = "<group>";
+		};
 		840E242220F6098700AF1377 = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +189,8 @@
 		840E242D20F6098700AF1377 /* BeePlayTestDemo */ = {
 			isa = PBXGroup;
 			children = (
+				7940B1302106B6D600441D72 /* RNCryptor */,
+				7940B13B2106B6D600441D72 /* RNCryptor iOS */,
 				840E242E20F6098700AF1377 /* AppDelegate.h */,
 				840E242F20F6098700AF1377 /* AppDelegate.m */,
 				798C9F7E20FF256700B7A679 /* udid.xml */,
@@ -262,6 +309,7 @@
 				840E243B20F6098700AF1377 /* LaunchScreen.storyboard in Resources */,
 				840E243820F6098700AF1377 /* Assets.xcassets in Resources */,
 				798C9F7F20FF256700B7A679 /* udid.xml in Resources */,
+				7940B1432106B6D600441D72 /* Info.plist in Resources */,
 				840E243620F6098700AF1377 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,11 +385,15 @@
 				840E248020FA2E3000AF1377 /* CertViewController.m in Sources */,
 				840E244720F63E8000AF1377 /* HTTPServer.m in Sources */,
 				840E24BA20FB4E5B00AF1377 /* LSAP_model.m in Sources */,
+				7940B1412106B6D600441D72 /* RNEncryptor.m in Sources */,
 				840E243020F6098700AF1377 /* AppDelegate.m in Sources */,
 				840E247120F9D06300AF1377 /* TaskStatusBean.m in Sources */,
 				798C9F7D20FDFED700B7A679 /* Advertising.m in Sources */,
+				7940B1402106B6D600441D72 /* RNDecryptor.m in Sources */,
 				840E247420F9D0BF00AF1377 /* TaskBean.m in Sources */,
+				7940B13F2106B6D600441D72 /* RNCryptor.m in Sources */,
 				840E247720F9D50100AF1377 /* NSString+base64.m in Sources */,
+				7940B1422106B6D600441D72 /* RNCryptorEngine.m in Sources */,
 				840E247A20F9DDAD00AF1377 /* XYSocketServer.m in Sources */,
 				798C9F4820F839B900B7A679 /* DTDSNetworkManager.m in Sources */,
 			);

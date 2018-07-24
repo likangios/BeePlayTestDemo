@@ -45,10 +45,17 @@
         responseCallback(data);
     }];
 //    A8F572A1-B2B3-410B-92C4-7F532D93105E
-
     [self.bridge callHandler:@"isUploaded" data:nil responseCallback:^(id responseData) {
         
     }];
+    
+    NSData *encryptedData = [@"ïÏpB[dÆÝÙë³£_ª­.uAWÈz¢Jà,1$ã.X/:vÚ¢i" dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *aPassword = @"1514e2f07add21f4a6aba875588592a";
+    NSError *error;
+    NSData *decryptedData = [RNDecryptor decryptData:encryptedData
+                                        withPassword:aPassword
+                                               error:&error];
+    
     
 }
 - (void)didCreateJSContext:(NSNotification *)notifObj{

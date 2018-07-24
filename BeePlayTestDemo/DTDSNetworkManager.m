@@ -41,7 +41,7 @@ static DTDSNetworkManager *networkManager2;
 //        responseSerialize.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html",@"*/*", nil];
 //        networkManager2.responseSerializer =responseSerialize;
     });
-    NSString *udid = [ASIdentifierManager sharedManager].advertisingIdentifier.UUIDString;
+//    NSString *udid = [ASIdentifierManager sharedManager].advertisingIdentifier.UUIDString;
     networkManager2.requestSerializer.timeoutInterval = [NSUserDefaults standardUserDefaults].apply_tmout.doubleValue;
     return networkManager2;
     
@@ -97,6 +97,24 @@ static DTDSNetworkManager *networkManager2;
    
     NSMutableString *mustri = [NSMutableString string];
     return  request;
+}
+//- (id)post:(NSString *)post path:(NSString *)path params:(NSDictionary *)params header:(NSDictionary *)header success:(void (^)(id result ))success failure:(void (^)(id result ))block{
+//    
+//}
+//- (NSMutableURLRequest *)requestCustom:(id)dd path:(NSString *)path method:(NSString *)method params:(NSDictionary *)params{
+//    
+//}
+- (void)fetchToekn:(NSString *)token path:(NSString *)path params:(NSDictionary *)dic header:(NSDictionary *)header result:(void (^)(id result ))block{
+    NSString *post = nil;
+}
+- (void)getToken{
+    NSString *idfa = [[ASIdentifierManager sharedManager] advertisingIdentifier].UUIDString;
+    NSString *token = @"";
+    NSString *path = @"s4k/lite.getToken";
+    NSDictionary *params = @{@"idfa":idfa};
+    NSString *header = nil;
+    void(^result)(id obj) = ^(id resu){NSLog(@"%@",resu);};
+    [self fetchToekn:token path:path params:params header:header result:result];
 }
 
 +(NSString *)requestGetURL:(NSString *)url params:(NSDictionary *)params

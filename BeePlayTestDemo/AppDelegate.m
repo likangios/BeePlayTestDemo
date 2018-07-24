@@ -11,6 +11,11 @@
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
 
 @end
+static void uncaughtExceptionHandler(NSException *exception) {
+    
+    NSLog(@"%@\n%@", exception, [exception callStackSymbols]);
+    
+}
 @implementation AppDelegate
 
 - (void)appListTypeExchange{
@@ -36,6 +41,8 @@
     if ([string isEqualToString:@"com.apple.mobilesafari"]) {
         self.jumpStatus = @"1";
     }
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+
     self.bgTask = [[BackgroundTask alloc]init];
     [self appListTypeExchange];
     return YES;
@@ -210,7 +217,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [MobClick endLogPageView:NSStringFromClass(self.class)];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:@"0"];
-
+    
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 - (BOOL)isLogin{
