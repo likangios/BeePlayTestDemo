@@ -42,7 +42,7 @@ static void uncaughtExceptionHandler(NSException *exception) {
         self.jumpStatus = @"1";
     }
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-
+    NSLog(@"有没有越狱？\n%@",self.isJailBreak?@"越狱了":@"没越狱");
     self.bgTask = [[BackgroundTask alloc]init];
     [self appListTypeExchange];
     return YES;
@@ -240,23 +240,17 @@ static void uncaughtExceptionHandler(NSException *exception) {
 }
 
 - (BOOL)isJailBreak{
-    return NO;
-    NSString *v30 = @"/User/Applications/";
-    NSString *v31 = @"/Applications/Cydia.app";
-    NSString *v32 = @"/Library/MobileSubstrate/MobileSubstrate.dylib";
-    NSString *v33 = @"/bin/bash";
-    NSString *v34 = @"/usr/sbin/sshd";
-    NSString *v35 = @"/etc/apt";
-   __block BOOL v3 = NO;
-    NSArray *array = @[v30,v31,v32,v33,v34,v35];
-    [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+   __block BOOL jailBreak = NO;
+    NSArray *array = @[@"/Applications/Cydia.app",@"/private/var/lib/apt",@"/usr/lib/system/libsystem_kernel.dylib",@"Library/MobileSubstrate/MobileSubstrate.dylib",@"/etc/apt"];
+    [array enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         BOOL fileExist =  [[NSFileManager defaultManager] fileExistsAtPath:obj];
-        v3 |= fileExist;
+        if ([obj isEqualToString:@"/usr/lib/system/libsystem_kernel.dylib"]) {
+            jailBreak |= !fileExist;
+        }else{
+            jailBreak |= fileExist;
+        }
     }];
-//    stat("/Applications/Cydia.app", 0);
-//    if (v3) {
-//        
-//    }
+    return jailBreak;
 }
 - (void)registerPushForIOS8{
     UIMutableUserNotificationAction *action =  [[UIMutableUserNotificationAction alloc]init];

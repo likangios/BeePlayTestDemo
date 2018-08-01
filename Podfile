@@ -2,7 +2,8 @@ platform :ios, ‘9.0’
 
 target 'BeePlayTestDemo' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-  # use_frameworks!
+  use_frameworks!
+
 pod 'BlocksKit', '~> 2.2.5'
 #pod 'JQFMDB'
 #pod 'QMUIKit', '~> 1.7.6'
@@ -23,5 +24,7 @@ pod 'UMCSecurityPlugins'
 pod 'UMCAnalytics'
 pod 'WechatOpenSDK'
 pod 'CocoaAsyncSocket'
+pod 'MessagePack', '~> 1.0.0'
+pod 'RNCryptor', '~> 5.0.2'
 
 end

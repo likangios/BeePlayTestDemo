@@ -7,11 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7940B13F2106B6D600441D72 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7940B1322106B6D600441D72 /* RNCryptor.m */; };
-		7940B1402106B6D600441D72 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7940B1382106B6D600441D72 /* RNDecryptor.m */; };
-		7940B1412106B6D600441D72 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7940B1392106B6D600441D72 /* RNEncryptor.m */; };
-		7940B1422106B6D600441D72 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 7940B13A2106B6D600441D72 /* RNCryptorEngine.m */; };
-		7940B1432106B6D600441D72 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7940B13E2106B6D600441D72 /* Info.plist */; };
+		7940B1482107101500441D72 /* body.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7940B1472107101400441D72 /* body.rtf */; };
+		7940B16521096DFE00441D72 /* Temp.m in Sources */ = {isa = PBXBuildFile; fileRef = 7940B16421096DFE00441D72 /* Temp.m */; };
+		7940B168210AA73100441D72 /* originData in Resources */ = {isa = PBXBuildFile; fileRef = 7940B166210AA73100441D72 /* originData */; };
+		7940B169210AA73100441D72 /* encryptData in Resources */ = {isa = PBXBuildFile; fileRef = 7940B167210AA73100441D72 /* encryptData */; };
+		7940B16E210AACF500441D72 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7940B16D210AACF500441D72 /* Info.plist */; };
+		7940B172210AB30100441D72 /* params.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940B171210AB30100441D72 /* params.swift */; };
+		7940B184210AB62700441D72 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7940B177210AB62700441D72 /* RNCryptor.m */; };
+		7940B185210AB62700441D72 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7940B17D210AB62700441D72 /* RNDecryptor.m */; };
+		7940B186210AB62700441D72 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7940B17E210AB62700441D72 /* RNEncryptor.m */; };
+		7940B187210AB62700441D72 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 7940B17F210AB62700441D72 /* RNCryptorEngine.m */; };
+		7940B188210AB62700441D72 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7940B183210AB62700441D72 /* Info.plist */; };
+		7940B18C210AF80200441D72 /* struceData in Resources */ = {isa = PBXBuildFile; fileRef = 7940B18B210AF80200441D72 /* struceData */; };
 		798C9F4320F8343700B7A679 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798C9F4220F8343600B7A679 /* CoreTelephony.framework */; };
 		798C9F4520F8370600B7A679 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798C9F4420F8370600B7A679 /* AdSupport.framework */; };
 		798C9F4820F839B900B7A679 /* DTDSNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C9F4620F839B900B7A679 /* DTDSNetworkManager.m */; };
@@ -21,6 +28,8 @@
 		798C9F7A20FDEBC500B7A679 /* LKProxyDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C9F7920FDEBC500B7A679 /* LKProxyDetection.m */; };
 		798C9F7D20FDFED700B7A679 /* Advertising.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C9F7C20FDFED700B7A679 /* Advertising.m */; };
 		798C9F7F20FF256700B7A679 /* udid.xml in Resources */ = {isa = PBXBuildFile; fileRef = 798C9F7E20FF256700B7A679 /* udid.xml */; };
+		79A9C33C210F184A00CF6C0D /* func.list in Resources */ = {isa = PBXBuildFile; fileRef = 79A9C33A210F184900CF6C0D /* func.list */; };
+		79A9C33D210F184A00CF6C0D /* confuse.sh in Resources */ = {isa = PBXBuildFile; fileRef = 79A9C33B210F184900CF6C0D /* confuse.sh */; };
 		840E243020F6098700AF1377 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E242F20F6098700AF1377 /* AppDelegate.m */; };
 		840E243320F6098700AF1377 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E243220F6098700AF1377 /* ViewController.m */; };
 		840E243620F6098700AF1377 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840E243420F6098700AF1377 /* Main.storyboard */; };
@@ -38,25 +47,34 @@
 		840E248320FAF01B00AF1377 /* XYWebViewJSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E248220FAF01B00AF1377 /* XYWebViewJSObject.m */; };
 		840E248620FAF2AA00AF1377 /* LSAW_model.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E248520FAF2AA00AF1377 /* LSAW_model.m */; };
 		840E24BA20FB4E5B00AF1377 /* LSAP_model.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E24B920FB4E5B00AF1377 /* LSAP_model.m */; };
-		CE112884BDD8EB1755835625 /* libPods-BeePlayTestDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 357CC9CA7D10717D52D3F8B6 /* libPods-BeePlayTestDemo.a */; };
+		CD0754156B3AF1FD35879F3E /* Pods_BeePlayTestDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279252FB36F27C7D11DE9D03 /* Pods_BeePlayTestDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		357CC9CA7D10717D52D3F8B6 /* libPods-BeePlayTestDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeePlayTestDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		279252FB36F27C7D11DE9D03 /* Pods_BeePlayTestDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeePlayTestDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3927349A1A7679586A48E6F7 /* Pods-BeePlayTestDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeePlayTestDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeePlayTestDemo/Pods-BeePlayTestDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		7940B1312106B6D600441D72 /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNDecryptor.h; sourceTree = "<group>"; };
-		7940B1322106B6D600441D72 /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
-		7940B1332106B6D600441D72 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
-		7940B1342106B6D600441D72 /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
-		7940B1352106B6D600441D72 /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorEngine.h; sourceTree = "<group>"; };
-		7940B1362106B6D600441D72 /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
-		7940B1372106B6D600441D72 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
-		7940B1382106B6D600441D72 /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
-		7940B1392106B6D600441D72 /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
-		7940B13A2106B6D600441D72 /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
-		7940B13C2106B6D600441D72 /* RNCryptor iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor iOS.h"; sourceTree = "<group>"; };
-		7940B13D2106B6D600441D72 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		7940B13E2106B6D600441D72 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7940B1472107101400441D72 /* body.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = body.rtf; sourceTree = "<group>"; };
+		7940B16321096DFE00441D72 /* Temp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Temp.h; sourceTree = "<group>"; };
+		7940B16421096DFE00441D72 /* Temp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Temp.m; sourceTree = "<group>"; };
+		7940B166210AA73100441D72 /* originData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = originData; sourceTree = "<group>"; };
+		7940B167210AA73100441D72 /* encryptData */ = {isa = PBXFileReference; lastKnownFileType = file; path = encryptData; sourceTree = "<group>"; };
+		7940B16A210AAA9500441D72 /* BeePlayTestDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BeePlayTestDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		7940B16D210AACF500441D72 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7940B171210AB30100441D72 /* params.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = params.swift; sourceTree = "<group>"; };
+		7940B176210AB62700441D72 /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNDecryptor.h; sourceTree = "<group>"; };
+		7940B177210AB62700441D72 /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
+		7940B178210AB62700441D72 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
+		7940B179210AB62700441D72 /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
+		7940B17A210AB62700441D72 /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorEngine.h; sourceTree = "<group>"; };
+		7940B17B210AB62700441D72 /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
+		7940B17C210AB62700441D72 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
+		7940B17D210AB62700441D72 /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
+		7940B17E210AB62700441D72 /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
+		7940B17F210AB62700441D72 /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
+		7940B181210AB62700441D72 /* RNCryptor iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor iOS.h"; sourceTree = "<group>"; };
+		7940B182210AB62700441D72 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		7940B183210AB62700441D72 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7940B18B210AF80200441D72 /* struceData */ = {isa = PBXFileReference; lastKnownFileType = file; path = struceData; sourceTree = "<group>"; };
 		798C9F4220F8343600B7A679 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		798C9F4420F8370600B7A679 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		798C9F4620F839B900B7A679 /* DTDSNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTDSNetworkManager.m; sourceTree = "<group>"; };
@@ -72,7 +90,10 @@
 		798C9F7B20FDFED700B7A679 /* Advertising.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Advertising.h; sourceTree = "<group>"; };
 		798C9F7C20FDFED700B7A679 /* Advertising.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Advertising.m; sourceTree = "<group>"; };
 		798C9F7E20FF256700B7A679 /* udid.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = udid.xml; sourceTree = "<group>"; };
-		840E242B20F6098700AF1377 /* BeePlayTestDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeePlayTestDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		79A9C339210F159700CF6C0D /* codeObfuscation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = codeObfuscation.h; sourceTree = "<group>"; };
+		79A9C33A210F184900CF6C0D /* func.list */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = func.list; sourceTree = "<group>"; };
+		79A9C33B210F184900CF6C0D /* confuse.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = confuse.sh; sourceTree = "<group>"; };
+		840E242B20F6098700AF1377 /* NoName.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoName.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		840E242E20F6098700AF1377 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		840E242F20F6098700AF1377 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		840E243120F6098700AF1377 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -80,7 +101,6 @@
 		840E243520F6098700AF1377 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		840E243720F6098700AF1377 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		840E243A20F6098700AF1377 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		840E243C20F6098700AF1377 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		840E243D20F6098700AF1377 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		840E244420F6191500AF1377 /* BeePlayTestDemo.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeePlayTestDemo.pch; sourceTree = "<group>"; };
 		840E244520F63E8000AF1377 /* HTTPServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPServer.h; sourceTree = "<group>"; };
@@ -115,7 +135,7 @@
 			files = (
 				798C9F4520F8370600B7A679 /* AdSupport.framework in Frameworks */,
 				798C9F4320F8343700B7A679 /* CoreTelephony.framework in Frameworks */,
-				CE112884BDD8EB1755835625 /* libPods-BeePlayTestDemo.a in Frameworks */,
+				CD0754156B3AF1FD35879F3E /* Pods_BeePlayTestDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +147,7 @@
 			children = (
 				798C9F4420F8370600B7A679 /* AdSupport.framework */,
 				798C9F4220F8343600B7A679 /* CoreTelephony.framework */,
-				357CC9CA7D10717D52D3F8B6 /* libPods-BeePlayTestDemo.a */,
+				279252FB36F27C7D11DE9D03 /* Pods_BeePlayTestDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -141,29 +161,29 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		7940B1302106B6D600441D72 /* RNCryptor */ = {
+		7940B175210AB62700441D72 /* RNCryptor */ = {
 			isa = PBXGroup;
 			children = (
-				7940B1312106B6D600441D72 /* RNDecryptor.h */,
-				7940B1322106B6D600441D72 /* RNCryptor.m */,
-				7940B1332106B6D600441D72 /* RNCryptor+Private.h */,
-				7940B1342106B6D600441D72 /* RNCryptor-Prefix.pch */,
-				7940B1352106B6D600441D72 /* RNCryptorEngine.h */,
-				7940B1362106B6D600441D72 /* RNEncryptor.h */,
-				7940B1372106B6D600441D72 /* RNCryptor.h */,
-				7940B1382106B6D600441D72 /* RNDecryptor.m */,
-				7940B1392106B6D600441D72 /* RNEncryptor.m */,
-				7940B13A2106B6D600441D72 /* RNCryptorEngine.m */,
+				7940B176210AB62700441D72 /* RNDecryptor.h */,
+				7940B177210AB62700441D72 /* RNCryptor.m */,
+				7940B178210AB62700441D72 /* RNCryptor+Private.h */,
+				7940B179210AB62700441D72 /* RNCryptor-Prefix.pch */,
+				7940B17A210AB62700441D72 /* RNCryptorEngine.h */,
+				7940B17B210AB62700441D72 /* RNEncryptor.h */,
+				7940B17C210AB62700441D72 /* RNCryptor.h */,
+				7940B17D210AB62700441D72 /* RNDecryptor.m */,
+				7940B17E210AB62700441D72 /* RNEncryptor.m */,
+				7940B17F210AB62700441D72 /* RNCryptorEngine.m */,
 			);
 			path = RNCryptor;
 			sourceTree = "<group>";
 		};
-		7940B13B2106B6D600441D72 /* RNCryptor iOS */ = {
+		7940B180210AB62700441D72 /* RNCryptor iOS */ = {
 			isa = PBXGroup;
 			children = (
-				7940B13C2106B6D600441D72 /* RNCryptor iOS.h */,
-				7940B13D2106B6D600441D72 /* module.modulemap */,
-				7940B13E2106B6D600441D72 /* Info.plist */,
+				7940B181210AB62700441D72 /* RNCryptor iOS.h */,
+				7940B182210AB62700441D72 /* module.modulemap */,
+				7940B183210AB62700441D72 /* Info.plist */,
 			);
 			path = "RNCryptor iOS";
 			sourceTree = "<group>";
@@ -181,7 +201,7 @@
 		840E242C20F6098700AF1377 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				840E242B20F6098700AF1377 /* BeePlayTestDemo.app */,
+				840E242B20F6098700AF1377 /* NoName.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -189,13 +209,22 @@
 		840E242D20F6098700AF1377 /* BeePlayTestDemo */ = {
 			isa = PBXGroup;
 			children = (
-				7940B1302106B6D600441D72 /* RNCryptor */,
-				7940B13B2106B6D600441D72 /* RNCryptor iOS */,
+				79A9C33B210F184900CF6C0D /* confuse.sh */,
+				79A9C33A210F184900CF6C0D /* func.list */,
+				7940B175210AB62700441D72 /* RNCryptor */,
+				7940B180210AB62700441D72 /* RNCryptor iOS */,
 				840E242E20F6098700AF1377 /* AppDelegate.h */,
 				840E242F20F6098700AF1377 /* AppDelegate.m */,
+				7940B18B210AF80200441D72 /* struceData */,
+				7940B1472107101400441D72 /* body.rtf */,
 				798C9F7E20FF256700B7A679 /* udid.xml */,
+				7940B167210AA73100441D72 /* encryptData */,
+				7940B166210AA73100441D72 /* originData */,
 				798C9F4720F839B900B7A679 /* DTDSNetworkManager.h */,
 				798C9F4620F839B900B7A679 /* DTDSNetworkManager.m */,
+				7940B171210AB30100441D72 /* params.swift */,
+				7940B16321096DFE00441D72 /* Temp.h */,
+				7940B16421096DFE00441D72 /* Temp.m */,
 				798C9F7820FDEBC500B7A679 /* LKProxyDetection.h */,
 				798C9F7920FDEBC500B7A679 /* LKProxyDetection.m */,
 				840E243120F6098700AF1377 /* ViewController.h */,
@@ -230,12 +259,14 @@
 				840E247620F9D50100AF1377 /* NSString+base64.m */,
 				840E244520F63E8000AF1377 /* HTTPServer.h */,
 				840E244620F63E8000AF1377 /* HTTPServer.m */,
+				79A9C339210F159700CF6C0D /* codeObfuscation.h */,
 				840E244420F6191500AF1377 /* BeePlayTestDemo.pch */,
 				840E243420F6098700AF1377 /* Main.storyboard */,
 				840E243720F6098700AF1377 /* Assets.xcassets */,
 				840E243920F6098700AF1377 /* LaunchScreen.storyboard */,
-				840E243C20F6098700AF1377 /* Info.plist */,
 				840E243D20F6098700AF1377 /* main.m */,
+				7940B16D210AACF500441D72 /* Info.plist */,
+				7940B16A210AAA9500441D72 /* BeePlayTestDemo-Bridging-Header.h */,
 			);
 			path = BeePlayTestDemo;
 			sourceTree = "<group>";
@@ -253,6 +284,7 @@
 				840E242920F6098700AF1377 /* Resources */,
 				6F731B112448DE77EF3BF50D /* [CP] Embed Pods Frameworks */,
 				F913B441417AFF7749A506C1 /* [CP] Copy Pods Resources */,
+				79A9C334210F0BB000CF6C0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -260,7 +292,7 @@
 			);
 			name = BeePlayTestDemo;
 			productName = BeePlayTestDemo;
-			productReference = 840E242B20F6098700AF1377 /* BeePlayTestDemo.app */;
+			productReference = 840E242B20F6098700AF1377 /* NoName.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -274,6 +306,7 @@
 				TargetAttributes = {
 					840E242A20F6098700AF1377 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -306,11 +339,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79A9C33C210F184A00CF6C0D /* func.list in Resources */,
 				840E243B20F6098700AF1377 /* LaunchScreen.storyboard in Resources */,
 				840E243820F6098700AF1377 /* Assets.xcassets in Resources */,
+				7940B188210AB62700441D72 /* Info.plist in Resources */,
+				7940B16E210AACF500441D72 /* Info.plist in Resources */,
+				7940B169210AA73100441D72 /* encryptData in Resources */,
 				798C9F7F20FF256700B7A679 /* udid.xml in Resources */,
-				7940B1432106B6D600441D72 /* Info.plist in Resources */,
+				7940B18C210AF80200441D72 /* struceData in Resources */,
+				7940B1482107101500441D72 /* body.rtf in Resources */,
 				840E243620F6098700AF1377 /* Main.storyboard in Resources */,
+				79A9C33D210F184A00CF6C0D /* confuse.sh in Resources */,
+				7940B168210AA73100441D72 /* originData in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,14 +381,50 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BeePlayTestDemo/Pods-BeePlayTestDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/BlocksKit/BlocksKit.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/MessagePack/MessagePack.framework",
+				"${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
+				"${BUILT_PRODUCTS_DIR}/WebViewJavascriptBridge/WebViewJavascriptBridge.framework",
+				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlocksKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessagePack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebViewJavascriptBridge.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeePlayTestDemo/Pods-BeePlayTestDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		79A9C334210F0BB000CF6C0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = $PROJECT_DIR/$PROJECT_NAME/confuse.sh;
 		};
 		F913B441417AFF7749A506C1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -372,30 +448,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7940B16521096DFE00441D72 /* Temp.m in Sources */,
 				840E248320FAF01B00AF1377 /* XYWebViewJSObject.m in Sources */,
+				7940B186210AB62700441D72 /* RNEncryptor.m in Sources */,
 				840E247D20FA1DE000AF1377 /* MSKeyChain.m in Sources */,
 				798C9F4B20FC4B7600B7A679 /* NSObject+xyzj.m in Sources */,
+				7940B185210AB62700441D72 /* RNDecryptor.m in Sources */,
 				840E243320F6098700AF1377 /* ViewController.m in Sources */,
 				798C9F7720FDD02E00B7A679 /* BackgroundTask.m in Sources */,
+				7940B184210AB62700441D72 /* RNCryptor.m in Sources */,
 				840E246E20F9622A00AF1377 /* NSUserDefaults+extension.m in Sources */,
 				798C9F4E20FC7EF400B7A679 /* XYViewController.m in Sources */,
 				840E248620FAF2AA00AF1377 /* LSAW_model.m in Sources */,
 				798C9F7A20FDEBC500B7A679 /* LKProxyDetection.m in Sources */,
+				7940B187210AB62700441D72 /* RNCryptorEngine.m in Sources */,
 				840E243E20F6098700AF1377 /* main.m in Sources */,
 				840E248020FA2E3000AF1377 /* CertViewController.m in Sources */,
 				840E244720F63E8000AF1377 /* HTTPServer.m in Sources */,
 				840E24BA20FB4E5B00AF1377 /* LSAP_model.m in Sources */,
-				7940B1412106B6D600441D72 /* RNEncryptor.m in Sources */,
 				840E243020F6098700AF1377 /* AppDelegate.m in Sources */,
 				840E247120F9D06300AF1377 /* TaskStatusBean.m in Sources */,
 				798C9F7D20FDFED700B7A679 /* Advertising.m in Sources */,
-				7940B1402106B6D600441D72 /* RNDecryptor.m in Sources */,
 				840E247420F9D0BF00AF1377 /* TaskBean.m in Sources */,
-				7940B13F2106B6D600441D72 /* RNCryptor.m in Sources */,
 				840E247720F9D50100AF1377 /* NSString+base64.m in Sources */,
-				7940B1422106B6D600441D72 /* RNCryptorEngine.m in Sources */,
 				840E247A20F9DDAD00AF1377 /* XYSocketServer.m in Sources */,
 				798C9F4820F839B900B7A679 /* DTDSNetworkManager.m in Sources */,
+				7940B172210AB30100441D72 /* params.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,7 +608,9 @@
 			baseConfigurationReference = 3927349A1A7679586A48E6F7 /* Pods-BeePlayTestDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = AC3QX9VJ78;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = BeePlayTestDemo/BeePlayTestDemo.pch;
@@ -538,7 +618,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoyu.qian;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = NoName;
+				SWIFT_OBJC_BRIDGING_HEADER = "BeePlayTestDemo/BeePlayTestDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -548,7 +631,9 @@
 			baseConfigurationReference = D635ADB8FDB106CB7C880AB0 /* Pods-BeePlayTestDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = AC3QX9VJ78;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = BeePlayTestDemo/BeePlayTestDemo.pch;
@@ -556,7 +641,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoyu.qian;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = NoName;
+				SWIFT_OBJC_BRIDGING_HEADER = "BeePlayTestDemo/BeePlayTestDemo-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

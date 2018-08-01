@@ -14,22 +14,21 @@
 //pod 'UMCAnalytics'
 //pod 'WechatOpenSDK'
 
+#import "codeObfuscation.h"
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
-
-#import <MBProgressHUD.h>
-#import <AFNetworking.h>
-#import <Masonry.h>
-#import <BlocksKit.h>
-#import <BlocksKit+UIKit.h>
+#import <MBProgressHUD/MBProgressHUD.h>
+#import <AFNetworking/AFNetworking.h>
+#import <Masonry/Masonry.h>
+#import <BlocksKit/BlocksKit.h>
+#import <BlocksKit/BlocksKit+UIKit.h>
 #import <UMCommon/UMCommon.h>
-#import <UMCSecurityPlugins/SecurityEnvSDK/SecurityEnvSDK.h>
+#import <SecurityEnvSDK/SecurityEnvSDK.h>
 #import <UTDID/UTDevice.h>
-#import <UMCAnalytics/UMAnalytics/DplusMobClick.h>
-#import <UMCAnalytics/UMAnalytics/MobClick.h>
+#import <UMAnalytics/DplusMobClick.h>
+#import <UMAnalytics/MobClick.h>
 #import <WechatOpenSDK/WXApi.h>
 #import <WechatOpenSDK/WXApiObject.h>
 #import <WechatOpenSDK/WechatAuthSDK.h>
-#import "GCDAsyncSocket.h"
 #import "LSAW_model.h"
 #import "LSAP_model.h"
 #import "DTDSNetworkManager.h"
@@ -37,16 +36,18 @@
 #import "NSUserDefaults+extension.h"
 #import "NSString+base64.h"
 #import "XYWebViewJSObject.h"
-#import "BackgroundTask.h" 
-#import <MJExtension.h>
-#import <GCDAsyncUdpSocket.h>
-#import <GCDAsyncSocket.h>
+#import "BackgroundTask.h"
+
+#import <MJExtension/MJExtension.h>
+#import "GCDAsyncUdpSocket.h"
+#import "GCDAsyncSocket.h"
+#import "MessagePack.h"
+
+#import <WebViewJavascriptBridge/WebViewJavascriptBridge.h>
+//
 #import"RNCryptor.h"
-
 #import"RNDecryptor.h"
-
 #import"RNEncryptor.h"
-
 #import"RNCryptorEngine.h"
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.

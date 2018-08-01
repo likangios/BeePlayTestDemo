@@ -7,7 +7,6 @@
 //
 
 #import "CertViewController.h"
-#import <WebViewJavascriptBridge.h>
 
 @interface CertViewController ()<UIWebViewDelegate>
 

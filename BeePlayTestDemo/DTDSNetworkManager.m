@@ -57,17 +57,14 @@ static DTDSNetworkManager *networkManager2;
 - (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession *)session{
     
 }
-- (NSURLRequest *)zPaSYdyXYGqCfFAq:(NSMutableURLRequest *)request params:(NSDictionary *)params header:(NSDictionary *)dic{
-    NSURLRequest *v362 = request;
-    NSDictionary *v363 = params;
-    NSDictionary *v364 = dic;
+- (NSURLRequest *)zPaSYdyXYGqCfFAqHeader:(NSDictionary *)header{
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://qianka.com/s4k/lite.getToken"]];
     [request setValue:request.URL.host forHTTPHeaderField:@"Host"];
-    [request setValue:[NSString stringWithFormat:@"%ld",NSDate.date.timeIntervalSince1970] forHTTPHeaderField:@"X-QK-TIME"];
+    [request setValue:[NSString stringWithFormat:@"%f",NSDate.date.timeIntervalSince1970] forHTTPHeaderField:@"X-QK-TIME"];
     [request setValue:@"c26007f41f472932454ea80deabd612c" forHTTPHeaderField:@"X-QK-API-KEY"];
     NSString *udid = [ASIdentifierManager sharedManager].advertisingIdentifier.UUIDString;
-
     NSString *bundleIdentifier = @"bao.bao.qin";
-    
     NSString *v302 = @"16195848-30b2-4fa1-bc49-f47d644fdd2f";//uuid key sskeychain
     NSString *v303 = udid;
     NSString *stru_10020E990 = @"";
@@ -82,8 +79,8 @@ static DTDSNetworkManager *networkManager2;
     NSString *shortVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];//获取项目版本号
 
     NSString *versionInfo = [NSString stringWithFormat:@"%@.%@",shortVersion,version];
-    NSString *APPV = [NSString stringWithFormat:@"%@|%@|%@|%f",iphone_model,versionNumber,stru_10020E990,bundleIdentifier,versionInfo];
-    [request setValue:auth forHTTPHeaderField:@"X-QK-APPV"];
+    NSString *APPV = [NSString stringWithFormat:@"%@|%f|%@|%@",iphone_model,versionNumber,bundleIdentifier,versionInfo];
+    [request setValue:APPV forHTTPHeaderField:@"X-QK-APPV"];
     [request setValue:bundleIdentifier forHTTPHeaderField:@"X-QK-SCHEME"];
     [request setValue:@"X-Qk-Auth, *" forHTTPHeaderField:@"Access-Control-Allow-Headers"];
     [request setValue:@"*" forHTTPHeaderField:@"Access-Control-Allow-Origin"];
@@ -95,6 +92,18 @@ static DTDSNetworkManager *networkManager2;
     NSString *extension = [NSString stringWithFormat:@"%@|%@|%@",v104,v105,v149];
     [request setValue:bundleIdentifier forHTTPHeaderField:@"X-QK-EXTENSION"];
    
+    NSString *dsid = @"";
+    [request setValue:@"" forHTTPHeaderField:@"X-QK-DSID"];
+
+    
+    NSString *s1 = request.URL.path;
+    NSString *s2 = nil;
+    NSString *s3 = @"aa005ddfcdfed328878fb81e76cc2969";
+    NSString *s4 = nil;
+    NSString *s5 = nil;
+    NSString *s6 = nil;
+    
+//    NSString *signGester = [NSString stringWithFormat:@"%@%@%@%@%@%@",];
     NSMutableString *mustri = [NSMutableString string];
     return  request;
 }

@@ -32,8 +32,10 @@ PODS:
   - CocoaAsyncSocket (7.6.3)
   - Masonry (1.0.2)
   - MBProgressHUD (1.1.0)
+  - MessagePack (1.0.0)
   - MJExtension (3.0.15.1)
   - ReactiveObjC (2.1.2)
+  - RNCryptor (5.0.3)
   - UMCAnalytics (5.4.1):
     - UMCCommon
   - UMCCommon (1.4.2)
@@ -50,8 +52,10 @@ DEPENDENCIES:
   - CocoaAsyncSocket
   - Masonry (~> 1.0.2)
   - MBProgressHUD (~> 1.1.0)
+  - MessagePack (~> 1.0.0)
   - MJExtension (~> 3.0.15.1)
   - ReactiveObjC (~> 2.1.2)
+  - RNCryptor (~> 5.0.2)
   - UMCAnalytics
   - UMCCommon
   - UMCSecurityPlugins
@@ -65,8 +69,10 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  MessagePack: 6ef1d8f7c4b4021cf0b257d61ec5e8b4f3e9831c
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
   ReactiveObjC: 7b6782ae39f9ac0f57205c3b0c0b69b9dd7048c0
+  RNCryptor: c93d19029dcf7ff160aca0f24d6c9e7b0d82f664
   UMCAnalytics: 44e0bb2f442b7aaf97d1c924b58798b612f2c13d
   UMCCommon: 19f09b4c67b6007837f70f321fe091e5814d49b1
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
@@ -74,6 +80,6 @@ SPEC CHECKSUMS:
   WechatOpenSDK: 491d965d79335070328571d3e79f714549e79a5e
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: e28790ea5000b5a2305a4026496296aab99f77f8
+PODFILE CHECKSUM: 25c256c12ec85f943a7e98c1cb6cbf8ca18474f9
 
 COCOAPODS: 1.4.0

@@ -62,8 +62,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
 //    [MSKeyChain delete:@"udid"];
-    /*
+    
     DTDSNetworkManager  * manager = [DTDSNetworkManager shareInstance];
     NSString * urlString = @"/api/auth/config";
     NSMutableDictionary *tParams = [NSMutableDictionary dictionary];
@@ -77,8 +78,10 @@
     } failure:^(NSError *error) {
         
     }];
-     */
-    [self toXYViewController];
+     
+//    [self toXYViewController];
+
+    
 }
 
 - (void)saveDataWith:(NSDictionary *)dic{
